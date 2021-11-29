@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinos</title>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <style>
+    .box {
+      margin: auto;
+      width: 100%;
+      background-color: #f1f1f1;
+      padding: 10px;
+      position: relative;
+      padding: 30px;
+      box-shadow: 4px 4px 7px #0000002f;
+    }
+
+    .imagen {
+      max-width: 100%;
+      max-height: auto;
+    }
+
+    .border-gradient {
+      border-top: 50px solid;
+      border-image-slice: 1;
+      border-width: 50px;
+    }
+
+    .border-gradient-purple {
+      border-image-source: linear-gradient(15deg, #beffcc 0%, #baff92 100%);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2"
+    style="box-shadow: 2px 2px 5px #0000002f; font-size: 18px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="font-weight: bold;">PuraVidaTours</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="destinos.html">Destinos</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Servicios
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Hoteles</a></li>
+              <li><a class="dropdown-item"
+                  href="https://www.airbnb.co.cr/a/stays/Costa-Rica?c=.pi0.pk393578303_53373630718&localized_ghost=true&gclid=CjwKCAiAnO2MBhApEiwA8q0HYXnbXJEwsupSJK44wgq5NRyXKS9FIrSRKJmUcqf-RQkz_cGHezb7fxoCiiIQAvD_BwE&_set_bev_on_new_domain=1637596028_ZmI2ZTA2NzgzMjNj">Airbnb</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Ver más
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Reglas para viajar</a></li>
+              <li><a class="dropdown-item" href="#">Recomendaciones</a></li>
+              <li><a class="dropdown-item" href="#">Nosotros</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Contacto</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Ingresar</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="menu-btn">
+    <i class="fas fa-bars fa-2x"></i>
+  </div>
+
+  <div class="img-bg" style="text-align: center;">
+    <img src="img/fondodestino.jpg" class="imagen" width="100%" height="auto">
+  </div>
+
+  <div class="container">
+    <div style="margin-top: -150px" class="box border-gradient border-gradient-purple">
+      <form>
+        <div class="row g-3">
+          <div class="col col-md-4">
+            <label for="destino" class="form-label">Lugar/Destino</label>
+            <select id="destino" class="form-select" style="height: 50px;" required>
+              <option value="" disabled selected>Destino...</option>
+              <option value="1">Destino 1</option>
+              <option value="2">Destino 2</option>
+              <option value="3">Destino 3</option>
+            </select>
+          </div>
+          <div class="col col-md-4">
+            <label for="inputEmail4" class="form-label">Fecha de ida</label>
+            <input class="form-control" onchange="enableDate()" required type="date" max="2023-12-12" id="checkin-date" name="checkin" width="270" disabled/>
+          </div>
+          <div class="col col-md-4">
+            <label for="inputPassword4" class="form-label">Fecha de regreso</label>
+            <input class="form-control" required type="date" id="checkout-date" max="2023-12-12" name="checkout" width="270" disabled/>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col" style="padding-top: 25px;">
+          <button type="submit" class="btn btn-success">Buscar destino</button>
+        </div>
+        </div>  
+      </form>
+      <script>
+        var chooseDestino = document.querySelector("#destino");
+        var currentDateTime = new Date();
+        var year = currentDateTime.getFullYear();
+        var month = (currentDateTime.getMonth() + 1);
+        var date = (currentDateTime.getDate() + 1);
+
+        if (date < 10) {
+          date = '0' + date;
+        }
+        if (month < 10) {
+          month = '0' + month;
+        }
+
+        var dateTomorrow = year + "-" + month + "-" + date;
+        var checkinElem = document.querySelector("#checkin-date");
+        var checkoutElem = document.querySelector("#checkout-date");
+
+        checkinElem.setAttribute("min", dateTomorrow);
+
+        chooseDestino.onchange = function () {
+          $("#checkin-date").prop("disabled", false );
+        }
+
+        checkinElem.onchange = function () {
+          checkoutElem.setAttribute("min", this.value);
+          $("#checkout-date").prop("disabled", false );
+        }
+      </script>
+    </div>
+  </div>
+  <div style="margin-bottom: 500px"></div>
+  </div>
+
+  
+
+  <div class="container">
+    <div class="row">
+      <div class='col-md-5'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker6'>
+              <input type='text' class="form-control" />
+              <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+        </div>
+      </div>
+      <div class='col-md-5'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker7'>
+              <input type='text' class="form-control" />
+              <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+        </div>
+      </div>
+    </div>
+ </div>
+
+  <!-- Footer Links -->
+  <div class="footer-links">
+    <div class="footer-container">
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Title One</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Title Two</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+        <li>
+          <a href="#">Lorem, ipsum dolor.</a>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Title Three</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Blockchain</a>
+        </li>
+        <li>
+          <a href="#">Machine Learning</a>
+        </li>
+        <li>
+          <a href="#">Artificial Intelligence</a>
+        </li>
+        <li>
+          <a href="#">Quantum Computing</a>
+        </li>
+        <li>
+          <a href="#">Startup</a>
+        </li>
+        <li>
+          <a href="#">Cryptocurrencies</a>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="#">
+            <h3>Title Four</h3>
+          </a>
+        </li>
+        <li>
+          <a href="#">Blockchain</a>
+        </li>
+        <li>
+          <a href="#">Machine Learning</a>
+        </li>
+        <li>
+          <a href="#">Artificial Intelligence</a>
+        </li>
+        <li>
+          <a href="#">Quantum Computing</a>
+        </li>
+        <li>
+          <a href="#">Startup</a>
+        </li>
+        <li>
+          <a href="#">Cryptocurrencies</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <h3>Tech News Copyright</h3>
+  </footer>
+
+  <!-- Scroll Reveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

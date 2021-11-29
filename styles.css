@@ -1,0 +1,618 @@
+/* Global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Oswald", sans-serif;
+  background-color: #f5f5f5 !important;
+
+  font-size: 16px;
+}
+
+.bg-custom-2 {
+  background-image: linear-gradient(25deg, #aaffa7 0%, #daffc2 100%);
+}
+
+.bg-shadow {
+  box-shadow: 4px 4px 7px #0000002f;
+  font-size: 18px;
+}
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+}
+
+/* Navigation */
+.nav-main {
+  font-size: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 20px 0;
+}
+
+.nav-brand {
+  width: 50px;
+}
+
+/* Navbar Left */
+.nav-main ul {
+  display: flex;
+}
+
+.nav-main ul li {
+  padding: 10px;
+}
+
+.nav-main ul li a {
+  padding: 2px;
+}
+
+.nav-main ul li a:hover {
+  border-bottom: 2px solid #fff;
+}
+
+.nav-main ul.nav-menu {
+  flex: 1;
+  margin-left: 20px;
+}
+
+hr {
+  margin: 10px 0;
+}
+
+/* Responsive Button */
+.menu-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  z-index: 2;
+  display: none;
+}
+
+/* SHOWCASE */
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  border: 0;
+  font-weight: bold;
+  padding: 10px 20px;
+  background: #262626;
+  color: #fff;
+  font-size: 15px;
+  border: 1px solid #fff;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.showcase {
+  width: 100%;
+  height: 550px;
+  background: url("./img/showcase2.jpg") no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-end;
+  padding-bottom: 50px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.showcase h2,
+.showcase p {
+  margin-bottom: 10px;
+}
+
+.showcase .btn {
+  margin-top: 20px;
+}
+
+/* News Cards */
+.news-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin: 70px 0;
+}
+
+.news-cards img {
+  width: 100%;
+  height: 180px;
+}
+
+.news-cards h3 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.news-cards a {
+  padding: 10px 0;
+  color: #ffffff;
+  text-transform: uppercase;
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* CARDS BANNER ONE */
+.cards-banner-one {
+  width: 100%;
+  height: 350px;
+  background: url("./img/tech-red.jpg");
+  margin-bottom: 40px;
+}
+
+.cards-banner-one .content {
+  width: 40%;
+  padding: 90px 0 0 30px;
+  color: #fff;
+}
+
+.cards-banner-one p,
+.cards-banner-two p {
+  margin: 10px 0 20px 0;
+}
+
+/* CARDS BANNER TWO*/
+.cards-banner-two {
+  width: 100%;
+  height: 350px;
+  background: url("./img/image-five.jpg") no-repeat center center/cover;
+}
+
+.cards-banner-two .content {
+  width: 50%;
+  padding: 100px 0 0 30px;
+}
+
+/* Follow */
+.social {
+  margin: 50px;
+}
+.social p {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.links a {
+  margin: 0 30px;
+}
+
+.links a i {
+  font-size: 3rem;
+}
+
+/* Links */
+.footer-links {
+  background: #2f3640;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 35px 0;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.footer-container ul {
+  margin: 0 auto;
+}
+
+.footer-links li {
+  line-height: 2.8;
+}
+
+.footer {
+  background: #2f3640;
+  color: #616161;
+  font-size: 12px;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 1rem;
+  padding-bottom: 20px;
+}
+
+/* Mobil */
+@media (max-width: 700px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .menu-btn:hover {
+    opacity: 0.5;
+  }
+
+  .nav-main ul.nav-menu {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #2f3640;
+    width: 50%;
+    height: 100%;
+    border-right: #ccc 1px solid;
+    opacity: 0.9;
+    padding: 30px;
+    transform: translateX(-500px);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .nav-main ul.nav-menu li {
+    padding: 20px;
+    border-bottom: #ccc solid 1px;
+    font-size: 14px;
+  }
+  .nav-main ul.nav-menu li:last-child {
+    border-bottom: 0;
+  }
+
+  .nav-main ul.nav-menu.show {
+    transform: translateX(-20px);
+  }
+
+  .nav-main ul.nav-menu-right {
+    margin-right: 50px;
+  }
+
+  .news-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards-banner-one .content,
+  .cards-banner-two .content {
+    width: 80%;
+  }
+
+  .footer-links .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .news-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .cards-banner-one .content,
+  .cards-banner-two .content {
+    width: 100%;
+    padding: 60px 20px;
+  }
+  .footer-links .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links .footer-container ul {
+    text-align: center;
+  }
+}
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+/*-- //social-icons --*/
+/******** SAP ************/
+.sap_tabs {
+  margin: 7em 0 3em;
+}
+div#horizontalTab {
+  width: 70% !important;
+  margin: 0 auto !important;
+}
+ul.resp-tabs-list {
+  list-style: none;
+  background: transparent;
+  text-align: center;
+}
+.facts {
+border: none;
+padding:2em 3em 3em;
+}
+.top1{
+margin-top: 2%;
+}
+.resp-tab-item {
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+  padding: .9em 3em;
+  display: inline-block;
+  margin: 0;
+  text-align: center;
+  list-style: none;
+  outline: none;
+  letter-spacing: 1px;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  text-transform: capitalize;
+  background: #000;
+  border-radius: 15px;
+  margin-left: 1em;
+}
+.resp-tab-item:hover {
+text-shadow: none;
+}
+.resp-tab-active {
+  background:#ff2f68;
+  text-shadow: none;
+  color: #fff;
+  border-radius: 15px;
+}
+h2.resp-accordion {
+display: none;
+}
+.resp-tab-content {
+  display: none;
+  background: rgba(30, 29, 29, 0.39);
+  border-radius: 15px;
+}
+.reservation ul {
+  margin: 0;
+  padding: 0;
+}
+.reservation ul li{
+  list-style-type:none;
+}
+.resp-content-active, .resp-accordion-active {
+ display: block;
+}
+.form-control {
+  height: 50px;
+}
+.book_date span {
+  top: 2.6em;
+  color: #fff;
+  left: 1em;
+  z-index: 9999;
+}
+.book_date form {
+  margin: -1em 0 0;
+}
+.book_date input[type="text"] {
+  width: 100% !important;
+  color: #fff;
+  font-size: 1em;
+  padding: 1em 3em;
+  outline: none;
+  border: none;
+  -webkit-appearance: none;
+  position: relative;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+letter-spacing: 1px;
+font-family: 'Coda', cursive;
+}
+.reservation h5 {
+  font-size: 1em;
+  color: #fff;
+  margin: 2em 0 1em;
+  text-align: left;
+  letter-spacing: 1px;
+}
+.book_date span.glyphicon-calendar {
+  left:1em;
+  top:2.4em;
+  z-index: 99;
+}
+.desti {
+  float: none !important;
+  width: 100% !important;
+}
+li.span1_of_1 {
+  float: left;
+  width: 48.3%;
+}
+.date_btn input[type="submit"] {
+  outline: none;
+  background:#00bfff;
+  font-size: 1em;
+  color: #fff;
+  padding: .8em 4em;
+  border: none;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  border-radius: 15px;
+letter-spacing: 1px;
+margin-top: 2em;
+  text-align: center !important;
+}
+.date_btn input[type="submit"]:hover{
+background:#ff2f68;
+}
+.reservation.w3l-submit {
+  text-align: center;
+}
+li.desti1 {
+  float: left;
+  width: 48%;
+}
+li.desti1:nth-child(2) {
+  margin-left:1.83em;
+}
+.date_car{
+margin:2em 0 0;
+}
+li.span1_of_1.left {
+  margin-left: 1.5em;
+}
+.resp-tab-item span i {
+  left: -1em;
+color:#fff;
+}
+@media only screen and (max-width:480px) {
+.sap_tabs{
+  padding-top:0;
+}
+.resp-vtabs .resp-tab-content {
+  border: 1px solid #C1C1C1;
+}
+.resp-vtabs .resp-tabs-container {
+  border: none;
+  float: none;
+  width: 100%;
+  min-height: initial;
+  clear: none;
+}
+.resp-accordion-closed {
+  display: none !important;
+}
+}
+
+.cards-glass{
+
+/* From https://css.glass */
+background: rgba(105, 105, 105, 0.22);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.7px);
+-webkit-backdrop-filter: blur(3.7px);
+border: 1px solid rgba(105, 105, 105, 0.1);
+}
+.font-cards{
+  color: #ffffff;
+  padding: 20px;
+}
+
+.cards-glass:hover{
+  box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273) !important;
+  transition: all 0.3s linear;
+}
+.card-img-top{
+  transition: all 0.3s ease-in-out;
+}
+.card-img-top:hover{
+  transform: scale(1.8) !important;
+}
+
+.overflow-cards{
+  overflow: hidden;
+}
+
+
