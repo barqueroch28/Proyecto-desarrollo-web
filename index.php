@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,8 +90,7 @@
               <h2 class="fw-bold text-center py-5">¡Bienvenido a PuraVidaTours!</h2>
 
               <!-- Login -->
-
-              <form action="javascript:void(0);" method="POST" onsubmit="MultipleTransaccion()">
+              <form action="login.php" method="POST" class="was-validated" onsubmit="MultipleTransaccion()">
                 <div class="mb-4">
                   <label for="correo" class="form-label">Correo electronico:</label>
                   <input required type="email" class="form-control" name="correo" id="correo">
@@ -96,23 +99,27 @@
                   <label for="password" class="form-label">Contraseña:</label>
                   <input required type="password" class="form-control" name="password" id="password">
                 </div>
-                <div class="mb-4 form-check">
-                  <input type="checkbox" name="recordar" class="form-check-input" id="recordar">
-                  <label for="recordar" class="form-chceck-label">Recordarme</label>
-                </div>
+                <?php
+                  if(isset($_SESSION["error"])) {
+                    $error = $_SESSION["error"];
+                    echo "<div style='padding-bottom: 20px; margin-top: -18px;'>";
+                    echo "  <span style='color:#ff0000;'>$error</span>";
+                    echo "</div>";
+                  }
+                ?>
                 <div class="d-grid">
-                  <button type="submit" class="btn btn-success">Iniciar sesión</button>
+                  <button type="submit" name="but_login" id="but_login" class="btn btn-success">Iniciar sesión</button>
                 </div>
                 <br>
                 <div class="my-3 text-center">
-                  <span>¿No tienes cuenta aún? <a href="#">Regístrate</a></span><br><br>
+                  <span>¿No tienes cuenta aún? <a href="register.html">Regístrate</a></span><br><br>
                   <span><a href="javascript:history.back()">Atrás</a></span>
                 </div>
-              </form>
+              </form> <!-- Se cierra el Login -->
+              <!-------------------------------->
             </div>
           </div>
           <div><input type="button" id="IdPersona" onclick="SetId()" disabled hidden></div>
-
         </div>
       </div>
     </div>
@@ -169,7 +176,7 @@
           <ul class="navbar-nav mb-lg-0">
             <li class="nav-item">
               <a style="margin-right: -10px;" class="nav-link" href="login.html" data-toggle="modal"
-              data-target=".bd-example-modal-lg">Ingresar</a>
+                data-target=".bd-example-modal-lg">Ingresar</a>
               <!-- <button type="button" class="btn btn-secondary" data-toggle="modal"
                 data-target=".bd-example-modal-lg">Ingresar</button> -->
             </li>
@@ -356,7 +363,7 @@
     <!-- Follow -->
     <section class="social">
       <div style="padding-top: 100px;"></div>
-      <p>Follow PuraVidaTours</p>
+      <p style="color: #ffffff;">Follow PuraVidaTours</p>
       <div class="links">
         <a href="https://facebook.com">
           <i class="fab fa-facebook-f"></i>
@@ -609,3 +616,7 @@
 </body>
 
 </html>
+
+<?php
+    unset($_SESSION["error"]);
+?>
