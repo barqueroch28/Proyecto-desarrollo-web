@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PuraVidaTours | Escoge tu destino</title>
+  <title>PuraVidaTours | Nosotros</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
@@ -20,39 +20,71 @@
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
   <style>
-    .box {
-      margin: auto;
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    .column {
+      float: left;
+      width: 33.3%;
+      margin-bottom: 16px;
+      padding: 0 8px;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: 8px;
+    }
+
+    .container {
+      padding: 0 16px;
+    }
+
+    .container::after,
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .title {
+      color: grey;
+    }
+
+    .button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
       width: 100%;
-      background-color: #f1f1f1;
-      padding: 10px;
-      position: relative;
-      padding: 30px;
-      box-shadow: 4px 4px 7px #0000002f;
     }
 
-    .imagen {
-      max-width: 100%;
-      max-height: auto;
+    .button:hover {
+      background-color: #555;
     }
 
-    .border-gradient {
-      border-top: 50px solid;
-      border-image-slice: 1;
-      border-width: 50px;
-    }
-
-    .border-gradient-purple {
-      border-image-source: linear-gradient(15deg, #beffcc 0%, #baff92 100%);
+    @media screen and (max-width: 650px) {
+      .column {
+        width: 100%;
+        display: block;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2"
-    style="box-shadow: 2px 2px 5px #0000002f; font-size: 18px;">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html" style="font-weight: bold;">PuraVidaTours</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -82,13 +114,13 @@
               Ver más
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Reglas para viajar</a></li>
-              <li><a class="dropdown-item" href="#">Recomendaciones</a></li>
-              <li><a class="dropdown-item" href="#">Nosotros</a></li>
+              <li><a class="dropdown-item" href="reglas.html">Reglas para viajar</a></li>
+              <li><a class="dropdown-item" href="recomendaciones.html">Recomendaciones</a></li>
+              <li><a class="dropdown-item" href="nosotros.html">Nosotros</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#">Contacto</a></li>
+              <li><a class="dropdown-item" href="contacto.html">Contacto</a></li>
             </ul>
           </li>
         </ul>
@@ -99,74 +131,91 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav>  
 
-  <div class="menu-btn">
-    <i class="fas fa-bars fa-2x"></i>
-  </div>
-
-  <img src="img/fondodestino.jpg" class="imagen" width="100%" height="auto">
-
+  <div style="margin-top: 100px"></div>
   <div class="container">
-    <div style="margin-top: -150px" class="box border-gradient border-gradient-purple">
-      <form>
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label for="destino" class="form-label" style="width: max-content">Lugar/Destino</label>
-            <select id="destino" class="form-select" style="height: 50px;" required>
-              <option value="" disabled selected>Destino...</option>
-              <option value="1">Destino 1</option>
-              <option value="2">Destino 2</option>
-              <option value="3">Destino 3</option>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label for="inputEmail4" class="form-label">Fecha de ida</label>
-            <input class="form-control" onchange="enableDate()" required type="date" max="2022-12-31" id="checkin-date" name="checkin" width="270" disabled/>
-          </div>
-          <div class="col-md-4">
-            <label for="inputPassword4" class="form-label">Fecha de regreso</label>
-            <input class="form-control" required type="date" id="checkout-date" max="2022-12-31" name="checkout" width="270" disabled/>
-          </div>
-        </div>
-        <div class="row">
-        <div class="col" style="padding-top: 25px;">
-          <button type="submit" class="btn btn-lg btn-success">Buscar destino</button>
-        </div>
-        </div>  
-      </form>
-      <script>
-        var chooseDestino = document.querySelector("#destino");
-        var currentDateTime = new Date();
-        var year = currentDateTime.getFullYear();
-        var month = (currentDateTime.getMonth() + 1);
-        var date = (currentDateTime.getDate() + 1);
+    <p style="font-size: 40px; margin-top: 55px; margin-bottom: 30px; background-color: #cfcfcf; padding: 30px;">POLÍTICA DE PRIVACIDAD</p>
+    <p>El presente Política de Privacidad establece los términos en que PuraVidaTours usa y protege la información que
+      es
+      proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la
+      seguridad
+      de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda
+      ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin
+      embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y
+      enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.</p>
+    <p><strong>Información que es recogida</strong></p>
+    <p>Nuestro sitio web podrá recoger información personal por ejemplo: Nombre,&nbsp; información de contacto
+      como&nbsp; su
+      dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida
+      información específica para procesar algún pedido o realizar una entrega o facturación.</p>
+    <p><strong>Uso de la información recogida</strong></p>
+    <p>Nuestro sitio web emplea la información con el fin de proporcionar el mejor servicio posible, particularmente
+      para
+      mantener un registro de usuarios, de pedidos en caso que aplique, y mejorar nuestros productos y servicios.
+      &nbsp;Es
+      posible que sean enviados correos electrónicos periódicamente a través de nuestro sitio con ofertas especiales,
+      nuevos productos y otra información publicitaria que consideremos relevante para usted o que pueda brindarle algún
+      beneficio, estos correos electrónicos serán enviados a la dirección que usted proporcione y podrán ser cancelados
+      en
+      cualquier momento.</p>
+    <p>PuraVidaTours está altamente comprometido para cumplir con el compromiso de mantener su información segura.
+      Usamos
+      los sistemas más avanzados y los actualizamos constantemente para asegurarnos que no exista ningún acceso no
+      autorizado.</p>
+    <p><strong>Cookies</strong></p>
+    <p>Una cookie se refiere a un fichero que es enviado con la finalidad de solicitar permiso para almacenarse en su
+      ordenador, al aceptar dicho fichero se crea y la cookie sirve entonces para tener información respecto al tráfico
+      web, y también facilita las futuras visitas a una web recurrente. Otra función que tienen las cookies es que con
+      ellas las web pueden reconocerte individualmente y por tanto brindarte el mejor servicio personalizado de su web.
+    </p>
+    <p>Nuestro sitio web emplea las cookies para poder identificar las páginas que son visitadas y su frecuencia. Esta
+      información es empleada únicamente para análisis estadístico y después la información se elimina de forma
+      permanente. Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las cookies
+      ayudan
+      a proporcionar un mejor servicio de los sitios web, estás no dan acceso a información de su ordenador ni de usted,
+      a
+      menos de que usted así lo quiera y la proporcione directamente <a href="" target="_blank"></a>. Usted puede
+      aceptar
+      o negar el uso de cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues sirve para
+      tener un mejor servicio web. También usted puede cambiar la configuración de su ordenador para declinar las
+      cookies.
+      Si se declinan es posible que no pueda utilizar algunos de nuestros servicios.</p>
+    <p><strong>Enlaces a Terceros</strong></p>
+    <p>Este sitio web pudiera contener en laces a otros sitios que pudieran ser de su interés. Una vez que usted de clic
+      en
+      estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto
+      no
+      somos responsables de los <a href="#"
+        target="_blank">términos
+        o privacidad</a> ni de la protección de sus datos en esos otros sitios terceros. Dichos sitios están sujetos a
+      sus propias políticas de privacidad por lo cual es recomendable que los consulte para confirmar que usted está de
+      acuerdo con estas.</p>
+    <p><strong>Control de su información personal</strong></p>
+    <p>En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es
+      proporcionada
+      a nuestro sitio web.&nbsp; Cada vez que se le solicite rellenar un formulario, como el de alta de usuario, puede
+      marcar o desmarcar la opción de recibir información por correo electrónico. &nbsp;En caso de que haya marcado la
+      opción de recibir nuestro boletín o publicidad usted puede cancelarla en cualquier momento.</p>
+    <p>Esta compañía no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento,
+      salvo que sea requerido por un juez con un orden judicial.</p>
+    <p>PuraVidaTours Se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier
+      momento.</p>
 
-        if (date < 10) {
-          date = '0' + date;
-        }
-        if (month < 10) {
-          month = '0' + month;
-        }
-
-        var dateTomorrow = year + "-" + month + "-" + date;
-        var checkinElem = document.querySelector("#checkin-date");
-        var checkoutElem = document.querySelector("#checkout-date");
-
-        checkinElem.setAttribute("min", dateTomorrow);
-
-        chooseDestino.onchange = function () {
-          $("#checkin-date").prop("disabled", false );
-        }
-
-        checkinElem.onchange = function () {
-          checkoutElem.setAttribute("min", this.value);
-          $("#checkout-date").prop("disabled", false );
-        }
-      </script>
-    </div>
-  </div>
-  <div style="margin-bottom: 500px"></div>
+    <section class="social">
+      <p>Follow PuraVidaTours</p>
+      <div class="links">
+        <a href="https://facebook.com">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://linkdin.com">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
   </div>
 
   <style>
@@ -404,6 +453,7 @@
   <!-- Scroll Reveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="main.js"></script>
+  </div>
 </body>
 
 </html>

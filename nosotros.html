@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PuraVidaTours | Escoge tu destino</title>
+  <title>PuraVidaTours | Nosotros</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
@@ -20,39 +20,71 @@
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
   <style>
-    .box {
-      margin: auto;
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    .column {
+      float: left;
+      width: 33.3%;
+      margin-bottom: 16px;
+      padding: 0 8px;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: 8px;
+    }
+
+    .container {
+      padding: 0 16px;
+    }
+
+    .container::after,
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .title {
+      color: grey;
+    }
+
+    .button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
       width: 100%;
-      background-color: #f1f1f1;
-      padding: 10px;
-      position: relative;
-      padding: 30px;
-      box-shadow: 4px 4px 7px #0000002f;
     }
 
-    .imagen {
-      max-width: 100%;
-      max-height: auto;
+    .button:hover {
+      background-color: #555;
     }
 
-    .border-gradient {
-      border-top: 50px solid;
-      border-image-slice: 1;
-      border-width: 50px;
-    }
-
-    .border-gradient-purple {
-      border-image-source: linear-gradient(15deg, #beffcc 0%, #baff92 100%);
+    @media screen and (max-width: 650px) {
+      .column {
+        width: 100%;
+        display: block;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2"
-    style="box-shadow: 2px 2px 5px #0000002f; font-size: 18px;">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html" style="font-weight: bold;">PuraVidaTours</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -82,13 +114,13 @@
               Ver más
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Reglas para viajar</a></li>
-              <li><a class="dropdown-item" href="#">Recomendaciones</a></li>
-              <li><a class="dropdown-item" href="#">Nosotros</a></li>
+              <li><a class="dropdown-item" href="reglas.html">Reglas para viajar</a></li>
+              <li><a class="dropdown-item" href="recomendaciones.html">Recomendaciones</a></li>
+              <li><a class="dropdown-item" href="nosotros.html">Nosotros</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#">Contacto</a></li>
+              <li><a class="dropdown-item" href="contacto.html">Contacto</a></li>
             </ul>
           </li>
         </ul>
@@ -101,72 +133,135 @@
     </div>
   </nav>
 
-  <div class="menu-btn">
-    <i class="fas fa-bars fa-2x"></i>
-  </div>
-
-  <img src="img/fondodestino.jpg" class="imagen" width="100%" height="auto">
-
   <div class="container">
-    <div style="margin-top: -150px" class="box border-gradient border-gradient-purple">
-      <form>
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label for="destino" class="form-label" style="width: max-content">Lugar/Destino</label>
-            <select id="destino" class="form-select" style="height: 50px;" required>
-              <option value="" disabled selected>Destino...</option>
-              <option value="1">Destino 1</option>
-              <option value="2">Destino 2</option>
-              <option value="3">Destino 3</option>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label for="inputEmail4" class="form-label">Fecha de ida</label>
-            <input class="form-control" onchange="enableDate()" required type="date" max="2022-12-31" id="checkin-date" name="checkin" width="270" disabled/>
-          </div>
-          <div class="col-md-4">
-            <label for="inputPassword4" class="form-label">Fecha de regreso</label>
-            <input class="form-control" required type="date" id="checkout-date" max="2022-12-31" name="checkout" width="270" disabled/>
-          </div>
-        </div>
-        <div class="row">
-        <div class="col" style="padding-top: 25px;">
-          <button type="submit" class="btn btn-lg btn-success">Buscar destino</button>
-        </div>
-        </div>  
-      </form>
-      <script>
-        var chooseDestino = document.querySelector("#destino");
-        var currentDateTime = new Date();
-        var year = currentDateTime.getFullYear();
-        var month = (currentDateTime.getMonth() + 1);
-        var date = (currentDateTime.getDate() + 1);
-
-        if (date < 10) {
-          date = '0' + date;
-        }
-        if (month < 10) {
-          month = '0' + month;
-        }
-
-        var dateTomorrow = year + "-" + month + "-" + date;
-        var checkinElem = document.querySelector("#checkin-date");
-        var checkoutElem = document.querySelector("#checkout-date");
-
-        checkinElem.setAttribute("min", dateTomorrow);
-
-        chooseDestino.onchange = function () {
-          $("#checkin-date").prop("disabled", false );
-        }
-
-        checkinElem.onchange = function () {
-          checkoutElem.setAttribute("min", this.value);
-          $("#checkout-date").prop("disabled", false );
-        }
-      </script>
+    <div class="" style="margin-top: 100px; text-align: center; font-size: 60px;">
+      <p style="font-weight: bold; color: #333333;">Nosotros</p>
     </div>
-  </div>
-  <div style="margin-bottom: 500px"></div>
+    <h2 style="color:#333333; padding-left: 20px;">¿Quiénes somos?</h2>
+    <h5 style="padding:20px 40px 20px 40px; color: #868686; font-weight: 400;">
+      PuraVidaTours es una empresa que nació enfocada en el área de turismo nacional, así como para facilitar las necesidades 
+      de nuestros clientes, hoy día brindamos servicios complementarios en áreas importantes tales como salud, educación, 
+      bienes raíces, comercios afiliados, publicidad y mucho más, con el principal interés de brindar la mayor calidad 
+      posible de un servicio completo creado para el goce de toda la familia.</h5><br>
+    <h2 style="color:#333333;padding-left: 20px;">Integrantes</h2>
+    <br>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <img src="img/pfp.png" style="width:100%">
+          <div class="container">
+            <br>
+            <h2>Jose Esteban</h2>
+            <p class="title">Diseñador</p>
+            <div style="color: #868686;">
+              <p>jazofeifaz233@ulacit.ed.cr</p>
+            </div> 
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="img/pfp.png" style="width:100%">
+          <div class="container">
+            <br>
+            <h2>Jocsan Barquero</h2>
+            <p class="title">Diseñador</p>
+            <p></p>
+            <div style="color: #868686;">
+              <p>jbarqueroc064@ulacit.ed.cr</p>
+            </div>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="img/pfp.png" style="width:100%">
+          <div class="container">
+            <br>
+            <h2>Diego Reynieri</h2>
+            <p class="title">Diseñador</p>
+            <div style="color: #868686;">
+              <p>dcoream377@ulacit.ed.cr</p>
+            </div> 
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="img/pfp.png" style="width:100%">
+          <div class="container">
+            <br>
+            <h2>Moisés Badilla</h2>
+            <p class="title">Diseñador</p>
+            <div style="color: #868686;">
+              <p>mbadillal667@ulacit.ed.cr</p>
+            </div>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 170px;"></div>
+    <div class="container">
+      <h1>Nuestras recomendaciones</h1>
+      <hr style="color: #b1b1b1;">
+      <div class="news-cards">
+        <div>
+          <img src="img/news1.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/news2.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/news3.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/news4.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <section class="social">
+      <p>Follow PuraVidaTours</p>
+      <div class="links">
+        <a href="https://facebook.com">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://linkdin.com">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
   </div>
 
   <style>
@@ -404,6 +499,7 @@
   <!-- Scroll Reveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="main.js"></script>
+  </div>
 </body>
 
 </html>
