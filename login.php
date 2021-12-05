@@ -28,32 +28,34 @@
                     // Login usuario corriente
                     if ($row["8"] == 1) {
                         $_SESSION['correo'] = $correo;
-                        unset($_SESSION["error"]);
                         header('Location: prueba.php');
                     }
                     // Login administrador
                     else if ($row["8"] == 2) {
                         $_SESSION['correo'] = $correo;
-                        unset($_SESSION["error"]);
-                        header('Location: prueba.php');
+                        header('Location: admin/dashboard.html');
                     }
                     else {
+                        $error = "Correo y/o contraseña incorrectos.";
                         $_SESSION["error"] = $error;
                         header('Location: index.php');
                         echo "<h1>Error verificando la sesión.</h1>";
                     }
 
                 } else {
+                    $error = "No se pudo validar la sesión.";
                     $_SESSION["error"] = $error;
                     header('Location: index.php');
                 }
 
             } else {
+                $error = "No se pudo validar la sesión.";
                 $_SESSION["error"] = $error;
                 header('Location: index.php');
             }
             
         } else {
+            $error = "No se pudo validar la sesión.";
             $_SESSION["error"] = $error;
             header('Location: index.php');
         }
