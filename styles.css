@@ -230,8 +230,8 @@ hr {
 }
 
 .footer {
-  background: #2f3640;
-  color: #616161;
+  background: #111213;
+  color: #d3d3d3;
   font-size: 12px;
   padding: 20px 0;
   text-align: center;
@@ -614,5 +614,4 @@ border: 1px solid rgba(105, 105, 105, 0.1);
 .overflow-cards{
   overflow: hidden;
 }
-
 

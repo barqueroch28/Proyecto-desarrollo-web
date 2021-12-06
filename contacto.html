@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
+  <!-- Required meta tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PuraVidaTours | Escoge tu destino</title>
+  <title>PuraVidaTours | Contactenos</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
@@ -20,39 +21,29 @@
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
 
-  <style>
-    .box {
-      margin: auto;
-      width: 100%;
-      background-color: #f1f1f1;
-      padding: 10px;
-      position: relative;
-      padding: 30px;
-      box-shadow: 4px 4px 7px #0000002f;
-    }
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-    .imagen {
-      max-width: 100%;
-      max-height: auto;
-    }
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
 
-    .border-gradient {
-      border-top: 50px solid;
-      border-image-slice: 1;
-      border-width: 50px;
-    }
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    .border-gradient-purple {
-      border-image-source: linear-gradient(15deg, #beffcc 0%, #baff92 100%);
-    }
-  </style>
+  <!-- Style -->
+  <link rel="stylesheet" href="css/style.css">
+
+
 </head>
 
-<body>
+<style>
+  .error {
+    color: #ff3232;
+  }
+</style>
 
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2"
-    style="box-shadow: 2px 2px 5px #0000002f; font-size: 18px;">
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html" style="font-weight: bold;">PuraVidaTours</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -82,13 +73,13 @@
               Ver más
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Reglas para viajar</a></li>
-              <li><a class="dropdown-item" href="#">Recomendaciones</a></li>
-              <li><a class="dropdown-item" href="#">Nosotros</a></li>
+              <li><a class="dropdown-item" href="reglas.html">Reglas para viajar</a></li>
+              <li><a class="dropdown-item" href="recomendaciones.html">Recomendaciones</a></li>
+              <li><a class="dropdown-item" href="nosotros.html">Nosotros</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#">Contacto</a></li>
+              <li><a class="dropdown-item" href="contacto.html">Contacto</a></li>
             </ul>
           </li>
         </ul>
@@ -101,72 +92,166 @@
     </div>
   </nav>
 
-  <div class="menu-btn">
-    <i class="fas fa-bars fa-2x"></i>
-  </div>
+  <div style="margin-top: 120px;">
+    <div class="container">
+      <h1 align="center">Contactenos</h1>
+      <br><br><br>
+      <div class="row">
+        <div class="col-md-5 mr-auto">
+          <div style="padding-left: 46px; margin-top: 80px; color: #a3a3a3;">
+            <p class="mb-5">Por este medio puede enviarnos un mensaje para contactarnos directamente. No dude en
+              contactarnos
+              y evacuaremos cualquier duda sobre nuestras tarifas o si necesita asistencia de parte de nuestro equipo
+              para que pueda
+              disfrutar al máximo de sus viajes.</p>
+          </div>
 
-  <img src="img/fondodestino.jpg" class="imagen" width="100%" height="auto">
-
-  <div class="container">
-    <div style="margin-top: -150px" class="box border-gradient border-gradient-purple">
-      <form>
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label for="destino" class="form-label" style="width: max-content">Lugar/Destino</label>
-            <select id="destino" class="form-select" style="height: 50px;" required>
-              <option value="" disabled selected>Destino...</option>
-              <option value="1">Destino 1</option>
-              <option value="2">Destino 2</option>
-              <option value="3">Destino 3</option>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label for="inputEmail4" class="form-label">Fecha de ida</label>
-            <input class="form-control" onchange="enableDate()" required type="date" max="2022-12-31" id="checkin-date" name="checkin" width="270" disabled/>
-          </div>
-          <div class="col-md-4">
-            <label for="inputPassword4" class="form-label">Fecha de regreso</label>
-            <input class="form-control" required type="date" id="checkout-date" max="2022-12-31" name="checkout" width="270" disabled/>
-          </div>
+          <ul class="list-unstyled pl-md-5 mb-5">
+            <li class="d-flex text-black mb-2">
+              <span class="mr-3"><span class="icon-map"></span></span> Parqueo ULACIT, Calle 3, Tournón, <br>San José,
+              San Francisco
+            </li>
+            <li class="d-flex text-black mb-2"><span class="mr-3"><span class="icon-phone"></span></span> +506 2121 2121
+            </li>
+            <li class="d-flex text-black"><span class="mr-3"><span class="icon-envelope-o"></span></span>
+              info@puravidatours.cr</li>
+          </ul>
         </div>
-        <div class="row">
-        <div class="col" style="padding-top: 25px;">
-          <button type="submit" class="btn btn-lg btn-success">Buscar destino</button>
+
+        <div class="col-md-6">
+          <form class="mb-5" method="post" id="contactForm" name="contactForm">
+            <div class="row">
+              <div class="col-md-12 form-group">
+                <label for="name" class="col-form-label">Nombre</label>
+                <input type="text" class="form-control" name="name" id="name">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 form-group">
+                <label for="email" class="col-form-label">Email</label>
+                <input type="text" class="form-control" name="email" id="email">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 form-group">
+                <label for="message" class="col-form-label">Mensaje</label>
+                <textarea class="form-control" name="message" id="message" cols="30" rows="7"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <input type="submit" value="Enviar Mensaje" style="margin-top: 20px;"
+                  class="btn btn-success btn-lg btn-block">
+                <span class="submitting"></span>
+              </div>
+            </div>
+          </form>
+
+          <div id="form-message-warning mt-4"></div>
         </div>
-        </div>  
-      </form>
-      <script>
-        var chooseDestino = document.querySelector("#destino");
-        var currentDateTime = new Date();
-        var year = currentDateTime.getFullYear();
-        var month = (currentDateTime.getMonth() + 1);
-        var date = (currentDateTime.getDate() + 1);
-
-        if (date < 10) {
-          date = '0' + date;
-        }
-        if (month < 10) {
-          month = '0' + month;
-        }
-
-        var dateTomorrow = year + "-" + month + "-" + date;
-        var checkinElem = document.querySelector("#checkin-date");
-        var checkoutElem = document.querySelector("#checkout-date");
-
-        checkinElem.setAttribute("min", dateTomorrow);
-
-        chooseDestino.onchange = function () {
-          $("#checkin-date").prop("disabled", false );
-        }
-
-        checkinElem.onchange = function () {
-          checkoutElem.setAttribute("min", this.value);
-          $("#checkout-date").prop("disabled", false );
-        }
-      </script>
+      </div>
     </div>
-  </div>
-  <div style="margin-bottom: 500px"></div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <div style="margin-top: 170px;"></div>
+    <div class="container">
+      <h1>Nuestras recomendaciones</h1>
+      <hr style="color: #b1b1b180;">
+      <div class="news-cards">
+        <div>
+          <img src="img/news1.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/news2.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/news3.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/news4.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 80px;"></div>
+    <div class="container">
+      <h1>Hoteles Populares</h1>
+      <hr style="color: #b1b1b180;">
+      <div class="news-cards">
+        <div>
+          <img src="img/hotel1.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/hotel2.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/hotel3.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/hotel1.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 170px;"></div>
+    <section class="social">
+      <p>Follow PuraVidaTours</p>
+      <div class="links">
+        <a href="https://facebook.com">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://linkdin.com">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
   </div>
 
   <style>
@@ -354,6 +439,7 @@
       padding: 0;
     }
   </style>
+
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <footer class="footer_area section_padding_130_0">
     <div class="container">
@@ -404,6 +490,7 @@
   <!-- Scroll Reveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="main.js"></script>
+  </div>
 </body>
 
 </html>
