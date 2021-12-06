@@ -1,10 +1,18 @@
+<?php
+  session_start();
+
+  if(isset($_SESSION["correo"])) {
+    $correo = $_SESSION["correo"];
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PuraVidaTours | Reserva tu hotel</title>
+  <title>PuraVidaTours | Nosotros</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
@@ -81,187 +89,166 @@
       }
     }
 
-    .wrapper {
-      border: 1px solid #00000038;
-      overflow: hidden;
-      height: 350px;
-      max-width: auto;
-      box-shadow: 0 4px 8px 0 #00000033;
-      border-radius: 4px;
-    }
-
-    .first {
-      max-width: 350px;
-      height: auto;
-      float: left;
-    }
-
-    .second {
-      overflow: hidden;
-      width: auto;
-      padding: 35px;
+    .sin-estilo {
+      border: none;
+      padding: 0;
+      background: none;
     }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html" style="font-weight: bold;">PuraVidaTours</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="destinos.html">Destinos</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Servicios
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="hotel.html">Hoteles</a></li>
-              <li><a class="dropdown-item"
-                  href="https://www.airbnb.co.cr/a/stays/Costa-Rica?c=.pi0.pk393578303_53373630718&localized_ghost=true&gclid=CjwKCAiAnO2MBhApEiwA8q0HYXnbXJEwsupSJK44wgq5NRyXKS9FIrSRKJmUcqf-RQkz_cGHezb7fxoCiiIQAvD_BwE&_set_bev_on_new_domain=1637596028_ZmI2ZTA2NzgzMjNj">Airbnb</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Ver más
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="reglas.html">Reglas para viajar</a></li>
-              <li><a class="dropdown-item" href="recomendaciones.html">Recomendaciones</a></li>
-              <li><a class="dropdown-item" href="nosotros.html">Nosotros</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="contacto.html">Contacto</a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="navbar-nav mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Ingresar</a>
-          </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.php">
+          <img src="./img/PuravidaTours.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          PuraVidaTours
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Servicios
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="destinos.php">Destinos</a></li>
+                <li><a class="dropdown-item" href="hotel.php">Hoteles</a></li>
+                <li><a class="dropdown-item"
+                    href="https://www.airbnb.co.cr/a/stays/Costa-Rica?c=.pi0.pk393578303_53373630718&localized_ghost=true&gclid=CjwKCAiAnO2MBhApEiwA8q0HYXnbXJEwsupSJK44wgq5NRyXKS9FIrSRKJmUcqf-RQkz_cGHezb7fxoCiiIQAvD_BwE&_set_bev_on_new_domain=1637596028_ZmI2ZTA2NzgzMjNj">Airbnb</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Ver más
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="reglas.php">Reglas para viajar</a></li>
+                <li><a class="dropdown-item" href="recomendaciones.php">Recomendaciones</a></li>
+                <li><a class="dropdown-item" href="nosotros.php">Nosotros</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="contacto.php">Contacto</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-lg-0">
+            <?php
+              if(!(isset($_SESSION["logeado"]))) {
+                echo "<li class='nav-item'>";
+                echo "  <a style='margin-right:-10px;' class='nav-link' href='#' data-toggle='modal' data-target='.bd-example-modal-lg'>Ingresar</a>";
+                echo "</li>";
+              } else {
+                // 
+                echo "<li class='nav-item dropdown'>";
+                echo "  <a style='margin-left:-10px;' href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'
+                aria-expanded='false'>". $correo ."</a>";
+                echo  "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+                echo    "<li><a class='dropdown-item' href='#'>Realizar un viaje</a></li>";
+                echo    "<li><a class='dropdown-item' href='#'>Mis viajes</a></li>";
+                 echo    "<li><a class='dropdown-item' href='#'>Mi usuario</a></li>";
+                echo  "</ul>";
+                echo "</li>";
+                // Boton de cerrar sesion
+                echo "<li class='nav-item'>";
+                echo "  <form method='post' action='cerrar.php'>";
+                echo "    <input type='submit' class='nav-link sin-estilo' style='margin-top: 8px; margin-right:-15px;' href='#' value='Cerrar sesión'>";
+                echo "  </form>";
+                echo "</li>";      
+              }
+            ?>
+            <!-- <a style='margin-right: -10px;' class='nav-link' href='login.html' data-toggle='modal'
+              data-target='.bd-example-modal-lg'>Ingresar</a> -->
+            <!-- <button type="button" class="btn btn-secondary" data-toggle="modal"
+              data-target=".bd-example-modal-lg">Ingresar</button> -->
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-  
+    </nav>
+
   <div class="container">
-    <div class="slideshow-container">
-      <div class="mySlides">
-        <div class="numbertext">1/3</div>
-        <img src="./img/hotelSlide1.jpg" style="width:100%">
-      </div>
-  
-      <div class="mySlides">
-        <div class="numbertext">2/3</div>
-        <img src="./img/hotelSlide2.jpg" style="width:100%">
-      </div>
-  
-      <div class="mySlides">
-        <div class="numbertext">3/3</div>
-        <img src="./img/hotelSlide3.jpg" style="width:100%">
-      </div>
-  
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <div class="" style="margin-top: 100px; text-align: center; font-size: 60px;">
+      <p style="font-weight: bold; color: #333333;">Nosotros</p>
     </div>
+    <h2 style="color:#333333; padding-left: 20px;">¿Quiénes somos?</h2>
+    <h5 style="padding:20px 40px 20px 40px; color: #868686; font-weight: 400;">
+      PuraVidaTours es una empresa que nació enfocada en el área de turismo nacional, así como para facilitar las necesidades 
+      de nuestros clientes, hoy día brindamos servicios complementarios en áreas importantes tales como salud, educación, 
+      bienes raíces, comercios afiliados, publicidad y mucho más, con el principal interés de brindar la mayor calidad 
+      posible de un servicio completo creado para el goce de toda la familia.</h5><br>
+    <h2 style="color:#333333;padding-left: 20px;">Integrantes</h2>
     <br>
-    <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
-    <script>
-      var slideIndex = 1;
-      showSlides(slideIndex);
-  
-      function plusSlides(n) {
-        showSlides(slideIndex += n);
-      }
-  
-      function currentSlide(n) {
-        showSlides(slideIndex = n);
-      }
-  
-      function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-      }
-    </script>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <img src="img/pfp.png" style="width:100%">
+          <div class="container">
+            <br>
+            <h2>Jose Esteban</h2>
+            <p class="title">Diseñador</p>
+            <div style="color: #868686;">
+              <p>jazofeifaz233@ulacit.ed.cr</p>
+            </div> 
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
 
-    <div style="margin-top: 70px;"></div>
-    <h1>Hoteles Disponibles</h1>
-    <hr>
-    <div class="wrapper">
-      <div class="first">
-        <img src="img/hotel1.jpg" style="width: 100%; padding: 10px; border-radius: 13px;" />
-      </div>
-      <div class="second">
-        <h4 style="font-weight: bold; color: #0077d8; padding-bottom: 5px;">Hotel 1</h4>
-        <h5 style="font-weight: 400;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non sodales neque sodales ut etiam sit amet nisl. Viverra mauris in aliquam sem fringilla. Gravida cum sociis natoque penatibus et magnis dis. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Vulputate enim nulla aliquet porttitor lacus. Molestie nunc non blandit massa enim. Ac auctor augue mauris augue neque.</h5>
-        <div style="padding-top: 10px;">
-          <h5>Precio: <span style="font-weight: bold; color: #319424;">CRC 38,672</span>
-            <span style="color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;"> por noche</span></h5>
+      <div class="column">
+        <div class="card">
+          <img src="img/pfp.png" style="width:100%">
+          <div class="container">
+            <br>
+            <h2>Jocsan Barquero</h2>
+            <p class="title">Diseñador</p>
+            <p></p>
+            <div style="color: #868686;">
+              <p>jbarqueroc064@ulacit.ed.cr</p>
+            </div>
+            <p><button class="button">Contact</button></p>
+          </div>
         </div>
-        <br>
-        <a href="#" style="font-weight: bold; font-size: 18px;" class="btn btn-success">Ver más</a>
       </div>
-    </div>
-    <br>
-    <div class="wrapper">
-      <div class="first">
-        <img src="img/hotel2.jpg" style="width: 100%; padding: 10px; border-radius: 13px;" />
-      </div>
-      <div class="second">
-        <h4 style="font-weight: bold; color: #0077d8; padding-bottom: 5px;">Hotel 2</h4>
-        <h5 style="font-weight: 400;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non sodales neque sodales ut etiam sit amet nisl. Viverra mauris in aliquam sem fringilla. Gravida cum sociis natoque penatibus et magnis dis. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Vulputate enim nulla aliquet porttitor lacus. Molestie nunc non blandit massa enim. Ac auctor augue mauris augue neque.</h5>
-        <div style="padding-top: 10px;">
-          <h5>Precio: <span style="font-weight: bold; color: #319424;">CRC 45,310</span>
-            <span style="color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;"> por noche</span></h5>
-        </div>
-        <br>
-        <a href="#" style="font-weight: bold; font-size: 18px;" class="btn btn-success">Ver más</a>
-      </div>
-    </div>
-    <br>
-    <div class="wrapper">
-      <div class="first">
-        <img src="img/hotel3.jpg" style="width: 100%; padding: 10px; border-radius: 13px;" />
-      </div>
-      <div class="second">
-        <h4 style="font-weight: bold; color: #0077d8; padding-bottom: 5px;">Hotel 3</h4>
-        <h5 style="font-weight: 400;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non sodales neque sodales ut etiam sit amet nisl. Viverra mauris in aliquam sem fringilla. Gravida cum sociis natoque penatibus et magnis dis. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Vulputate enim nulla aliquet porttitor lacus. Molestie nunc non blandit massa enim. Ac auctor augue mauris augue neque.</h5>
-        <div style="padding-top: 10px;">
-          <h5>Precio: <span style="font-weight: bold; color: #319424;">CRC 55,200</span>
-            <span style="color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;"> por noche</span></h5>
-        </div>
-        <br>
-        <a href="#" style="font-weight: bold; font-size: 18px;" class="btn btn-success">Ver más</a>
-      </div>
-    </div>
-  </div>
 
-  <div style="margin-top: 120px;"></div>
+      <div class="column">
+        <div class="card">
+          <img src="img/pfp.png" style="width:100%">
+          <div class="container">
+            <br>
+            <h2>Diego Reynieri</h2>
+            <p class="title">Diseñador</p>
+            <div style="color: #868686;">
+              <p>dcoream377@ulacit.ed.cr</p>
+            </div> 
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <img src="img/pfp.png" style="width:100%">
+          <div class="container">
+            <br>
+            <h2>Moisés Badilla</h2>
+            <p class="title">Diseñador</p>
+            <div style="color: #868686;">
+              <p>mbadillal667@ulacit.ed.cr</p>
+            </div>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 170px;"></div>
     <div class="container">
       <h1>Nuestras recomendaciones</h1>
       <hr style="color: #b1b1b1;">
@@ -301,21 +288,20 @@
       </div>
     </div>
 
-  <div style="margin-top: 150px;"></div>
-  <section class="social">
-    <p>Follow PuraVidaTours</p>
-    <div class="links">
-      <a href="https://facebook.com">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://twitter.com">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="https://linkdin.com">
-        <i class="fab fa-linkedin"></i>
-      </a>
-    </div>
-  </section>
+    <section class="social">
+      <p>Follow PuraVidaTours</p>
+      <div class="links">
+        <a href="https://facebook.com">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://linkdin.com">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
   </div>
 
   <style>

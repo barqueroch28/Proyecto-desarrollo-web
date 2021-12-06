@@ -1,7 +1,7 @@
 <?php
 
 // Conexión a la base de datos.
-define('DB_SERVER', '35.223.204.210');
+define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'moi');
 define('DB_PASSWORD', 'moi0210');
 define('DB_NAME', 'tours');

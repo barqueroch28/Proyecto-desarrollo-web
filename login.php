@@ -4,6 +4,8 @@
 
     // Mensaje de error
     $error = "Correo y/o contraseña incorrectos.";
+    
+    unset($_SESSION['logeado']);
 
     $role;
 
@@ -26,14 +28,16 @@
                 if ($row)
                 {   
                     // Login usuario corriente
-                    if ($row["8"] == 1) {
+                    if ($row["9"] == 1) {
                         $_SESSION['correo'] = $correo;
-                        header('Location: prueba.php');
+                        $_SESSION['logeado'] = 1;
+                        header('Location: index.php');
                     }
                     // Login administrador
-                    else if ($row["8"] == 2) {
+                    else if ($row["9"] == 2) {
                         $_SESSION['correo'] = $correo;
-                        header('Location: admin/dashboard.html');
+                        $_SESSION['logeado'] = 1;
+                        header('Location: admin/dashboard.php');
                     }
                     else {
                         $error = "Correo y/o contraseña incorrectos.";
@@ -43,7 +47,7 @@
                     }
 
                 } else {
-                    $error = "No se pudo validar la sesión.";
+                    $error = "No se pudo validar el role de la sesión.";
                     $_SESSION["error"] = $error;
                     header('Location: index.php');
                 }

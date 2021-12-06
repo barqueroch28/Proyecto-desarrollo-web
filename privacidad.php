@@ -1,3 +1,11 @@
+<?php
+  session_start();
+
+  if(isset($_SESSION["correo"])) {
+    $correo = $_SESSION["correo"];
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -80,29 +88,36 @@
         display: block;
       }
     }
+
+    .sin-estilo {
+      border: none;
+      padding: 0;
+      background: none;
+    }
   </style>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html" style="font-weight: bold;">PuraVidaTours</a>
+      <a class="navbar-brand" href="index.php">
+        <img src="./img/PuravidaTours.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        PuraVidaTours
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="destinos.html">Destinos</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Servicios
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="hotel.html">Hoteles</a></li>
+              <li><a class="dropdown-item" href="destinos.php">Destinos</a></li>
+              <li><a class="dropdown-item" href="hotel.php">Hoteles</a></li>
               <li><a class="dropdown-item"
                   href="https://www.airbnb.co.cr/a/stays/Costa-Rica?c=.pi0.pk393578303_53373630718&localized_ghost=true&gclid=CjwKCAiAnO2MBhApEiwA8q0HYXnbXJEwsupSJK44wgq5NRyXKS9FIrSRKJmUcqf-RQkz_cGHezb7fxoCiiIQAvD_BwE&_set_bev_on_new_domain=1637596028_ZmI2ZTA2NzgzMjNj">Airbnb</a>
               </li>
@@ -114,139 +129,118 @@
               Ver más
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="reglas.html">Reglas para viajar</a></li>
-              <li><a class="dropdown-item" href="recomendaciones.html">Recomendaciones</a></li>
-              <li><a class="dropdown-item" href="nosotros.html">Nosotros</a></li>
+              <li><a class="dropdown-item" href="reglas.php">Reglas para viajar</a></li>
+              <li><a class="dropdown-item" href="recomendaciones.php">Recomendaciones</a></li>
+              <li><a class="dropdown-item" href="nosotros.php">Nosotros</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="contacto.html">Contacto</a></li>
+              <li><a class="dropdown-item" href="contacto.php">Contacto</a></li>
             </ul>
           </li>
         </ul>
         <ul class="navbar-nav mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Ingresar</a>
-          </li>
+          <?php
+            if(!(isset($_SESSION["logeado"]))) {
+              echo "<li class='nav-item'>";
+              echo "  <a style='margin-right:-10px;' class='nav-link' href='#' data-toggle='modal' data-target='.bd-example-modal-lg'>Ingresar</a>";
+              echo "</li>";
+            } else {
+              // 
+              echo "<li class='nav-item dropdown'>";
+              echo "  <a style='margin-left:-10px;' href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'
+              aria-expanded='false'>". $correo ."</a>";
+              echo  "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+              echo    "<li><a class='dropdown-item' href='#'>Realizar un viaje</a></li>";
+              echo    "<li><a class='dropdown-item' href='#'>Mis viajes</a></li>";
+               echo    "<li><a class='dropdown-item' href='#'>Mi usuario</a></li>";
+              echo  "</ul>";
+              echo "</li>";
+              // Boton de cerrar sesion
+              echo "<li class='nav-item'>";
+              echo "  <form method='post' action='cerrar.php'>";
+              echo "    <input type='submit' class='nav-link sin-estilo' style='margin-top: 8px; margin-right:-15px;' href='#' value='Cerrar sesión'>";
+              echo "  </form>";
+              echo "</li>";      
+            }
+          ?>
+          <!-- <a style='margin-right: -10px;' class='nav-link' href='login.html' data-toggle='modal'
+            data-target='.bd-example-modal-lg'>Ingresar</a> -->
+          <!-- <button type="button" class="btn btn-secondary" data-toggle="modal"
+            data-target=".bd-example-modal-lg">Ingresar</button> -->
         </ul>
       </div>
     </div>
   </nav>
 
+  <div style="margin-top: 100px"></div>
   <div class="container">
-    <div class="" style="margin-top: 100px; text-align: center; font-size: 60px;">
-      <p style="font-weight: bold; color: #333333;">Nosotros</p>
-    </div>
-    <h2 style="color:#333333; padding-left: 20px;">¿Quiénes somos?</h2>
-    <h5 style="padding:20px 40px 20px 40px; color: #868686; font-weight: 400;">
-      PuraVidaTours es una empresa que nació enfocada en el área de turismo nacional, así como para facilitar las necesidades 
-      de nuestros clientes, hoy día brindamos servicios complementarios en áreas importantes tales como salud, educación, 
-      bienes raíces, comercios afiliados, publicidad y mucho más, con el principal interés de brindar la mayor calidad 
-      posible de un servicio completo creado para el goce de toda la familia.</h5><br>
-    <h2 style="color:#333333;padding-left: 20px;">Integrantes</h2>
-    <br>
-    <div class="row">
-      <div class="column">
-        <div class="card">
-          <img src="img/pfp.png" style="width:100%">
-          <div class="container">
-            <br>
-            <h2>Jose Esteban</h2>
-            <p class="title">Diseñador</p>
-            <div style="color: #868686;">
-              <p>jazofeifaz233@ulacit.ed.cr</p>
-            </div> 
-            <p><button class="button">Contact</button></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="card">
-          <img src="img/pfp.png" style="width:100%">
-          <div class="container">
-            <br>
-            <h2>Jocsan Barquero</h2>
-            <p class="title">Diseñador</p>
-            <p></p>
-            <div style="color: #868686;">
-              <p>jbarqueroc064@ulacit.ed.cr</p>
-            </div>
-            <p><button class="button">Contact</button></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="card">
-          <img src="img/pfp.png" style="width:100%">
-          <div class="container">
-            <br>
-            <h2>Diego Reynieri</h2>
-            <p class="title">Diseñador</p>
-            <div style="color: #868686;">
-              <p>dcoream377@ulacit.ed.cr</p>
-            </div> 
-            <p><button class="button">Contact</button></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="card">
-          <img src="img/pfp.png" style="width:100%">
-          <div class="container">
-            <br>
-            <h2>Moisés Badilla</h2>
-            <p class="title">Diseñador</p>
-            <div style="color: #868686;">
-              <p>mbadillal667@ulacit.ed.cr</p>
-            </div>
-            <p><button class="button">Contact</button></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top: 170px;"></div>
-    <div class="container">
-      <h1>Nuestras recomendaciones</h1>
-      <hr style="color: #b1b1b1;">
-      <div class="news-cards">
-        <div>
-          <img src="img/news1.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/news2.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/news3.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/news4.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-      </div>
-    </div>
+    <p style="font-size: 40px; margin-top: 55px; margin-bottom: 30px; background-color: #cfcfcf; padding: 30px;">POLÍTICA DE PRIVACIDAD</p>
+    <p>El presente Política de Privacidad establece los términos en que PuraVidaTours usa y protege la información que
+      es
+      proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la
+      seguridad
+      de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda
+      ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin
+      embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y
+      enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.</p>
+    <p><strong>Información que es recogida</strong></p>
+    <p>Nuestro sitio web podrá recoger información personal por ejemplo: Nombre,&nbsp; información de contacto
+      como&nbsp; su
+      dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida
+      información específica para procesar algún pedido o realizar una entrega o facturación.</p>
+    <p><strong>Uso de la información recogida</strong></p>
+    <p>Nuestro sitio web emplea la información con el fin de proporcionar el mejor servicio posible, particularmente
+      para
+      mantener un registro de usuarios, de pedidos en caso que aplique, y mejorar nuestros productos y servicios.
+      &nbsp;Es
+      posible que sean enviados correos electrónicos periódicamente a través de nuestro sitio con ofertas especiales,
+      nuevos productos y otra información publicitaria que consideremos relevante para usted o que pueda brindarle algún
+      beneficio, estos correos electrónicos serán enviados a la dirección que usted proporcione y podrán ser cancelados
+      en
+      cualquier momento.</p>
+    <p>PuraVidaTours está altamente comprometido para cumplir con el compromiso de mantener su información segura.
+      Usamos
+      los sistemas más avanzados y los actualizamos constantemente para asegurarnos que no exista ningún acceso no
+      autorizado.</p>
+    <p><strong>Cookies</strong></p>
+    <p>Una cookie se refiere a un fichero que es enviado con la finalidad de solicitar permiso para almacenarse en su
+      ordenador, al aceptar dicho fichero se crea y la cookie sirve entonces para tener información respecto al tráfico
+      web, y también facilita las futuras visitas a una web recurrente. Otra función que tienen las cookies es que con
+      ellas las web pueden reconocerte individualmente y por tanto brindarte el mejor servicio personalizado de su web.
+    </p>
+    <p>Nuestro sitio web emplea las cookies para poder identificar las páginas que son visitadas y su frecuencia. Esta
+      información es empleada únicamente para análisis estadístico y después la información se elimina de forma
+      permanente. Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las cookies
+      ayudan
+      a proporcionar un mejor servicio de los sitios web, estás no dan acceso a información de su ordenador ni de usted,
+      a
+      menos de que usted así lo quiera y la proporcione directamente <a href="" target="_blank"></a>. Usted puede
+      aceptar
+      o negar el uso de cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues sirve para
+      tener un mejor servicio web. También usted puede cambiar la configuración de su ordenador para declinar las
+      cookies.
+      Si se declinan es posible que no pueda utilizar algunos de nuestros servicios.</p>
+    <p><strong>Enlaces a Terceros</strong></p>
+    <p>Este sitio web pudiera contener en laces a otros sitios que pudieran ser de su interés. Una vez que usted de clic
+      en
+      estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto
+      no
+      somos responsables de los <a href="#"
+        target="_blank">términos
+        o privacidad</a> ni de la protección de sus datos en esos otros sitios terceros. Dichos sitios están sujetos a
+      sus propias políticas de privacidad por lo cual es recomendable que los consulte para confirmar que usted está de
+      acuerdo con estas.</p>
+    <p><strong>Control de su información personal</strong></p>
+    <p>En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es
+      proporcionada
+      a nuestro sitio web.&nbsp; Cada vez que se le solicite rellenar un formulario, como el de alta de usuario, puede
+      marcar o desmarcar la opción de recibir información por correo electrónico. &nbsp;En caso de que haya marcado la
+      opción de recibir nuestro boletín o publicidad usted puede cancelarla en cualquier momento.</p>
+    <p>Esta compañía no venderá, cederá ni distribuirá la información personal que es recopilada sin su consentimiento,
+      salvo que sea requerido por un juez con un orden judicial.</p>
+    <p>PuraVidaTours Se reserva el derecho de cambiar los términos de la presente Política de Privacidad en cualquier
+      momento.</p>
 
     <section class="social">
       <p>Follow PuraVidaTours</p>

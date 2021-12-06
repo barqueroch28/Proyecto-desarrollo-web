@@ -3,6 +3,10 @@
 
   session_start();
 
+  if(!(isset($_SESSION["logeado"]))) {
+    header('Location: ../../index.php');
+    return;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +40,12 @@
     textarea {
       resize: none;
     }
+
+    .sin-estilo {
+      border: none;
+      padding: 0;
+      background: none;
+    }
   </style>
 </head>
 
@@ -45,8 +55,9 @@
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="background-color: #000000;" href="../../index.php">PuraVidaTours</a>
     <ul class="navbar-nav px-3">
       <li class="nav justify-content-center">
-        <a class="nav-link" style="margin-right: 20px; font-size: 16px;" href="#">Mi usuario</a>
-        <a class="nav-link" style="font-size: 16px;" href="../../index.php">Cerrar sesión</a>
+        <form method="post" action="../cerrar.php">
+          <input type="submit" class="nav-link sin-estilo" style="font-size: 16px; margin-top: 3px" value="Cerrar sesión">
+        </form>
       </li>
     </ul>
   </nav>
@@ -57,7 +68,7 @@
         <div class="sidebar-sticky" style="position: static; margin-top: 50px;">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="../dashboard.html">
+              <a class="nav-link" href="../dashboard.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   class="feather feather-home">

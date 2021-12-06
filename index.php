@@ -1,5 +1,9 @@
 <?php
   session_start();
+
+  if(isset($_SESSION["correo"])) {
+    $correo = $_SESSION["correo"];
+  }
 ?>
 
 <!DOCTYPE html>
@@ -9,6 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PuraVidaTours</title>
+  <link rel="icon" href="img/favicon.png">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
@@ -34,18 +39,20 @@
 
 <style>
   body {
-    background-image:
-      linear-gradient(#000000ab,
-        #000000ef),
-      url(./img/indexbg.jpg);
+    background-image:linear-gradient(#000000ab,#000000ef),url(./img/indexbg.jpg);
     background-attachment: fixed;
-
   }
 
   .bg {
     background-image: url(./img/bannerlogin.png);
     background-position: center center;
     border-radius: 5px;
+  }
+
+  .sin-estilo {
+    border: none;
+    padding: 0;
+    background: none;
   }
 </style>
 
@@ -89,7 +96,7 @@
               </button>
               <h2 class="fw-bold text-center py-5">¡Bienvenido a PuraVidaTours!</h2>
 
-              <!-- Login -->
+              <!-- Login form -->
               <form action="login.php" method="POST" class="was-validated" onsubmit="MultipleTransaccion()">
                 <div class="mb-4">
                   <label for="correo" class="form-label">Correo electronico:</label>
@@ -107,15 +114,15 @@
                     echo "</div>";
                   }
                 ?>
-                <div class="d-grid">
-                  <button type="submit" name="but_login" id="but_login" class="btn btn-success">Iniciar sesión</button>
+                <div class='d-grid'>
+                  <button type='submit' name='but_login' id='but_login' class='btn btn-success'>Iniciar sesión</button>
                 </div>
                 <br>
                 <div class="my-3 text-center">
-                  <span>¿No tienes cuenta aún? <a href="register.html">Regístrate</a></span><br><br>
+                  <span>¿No tienes cuenta aún? <a href="register.php">Regístrate</a></span><br><br>
                   <span><a href="javascript:history.back()">Atrás</a></span>
                 </div>
-              </form> <!-- Se cierra el Login -->
+              </form> <!-- Se cierra el form del Login -->
               <!-------------------------------->
             </div>
           </div>
@@ -142,16 +149,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="destinos.html">Destinos</a>
-            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Servicios
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="hotel.html">Hoteles</a></li>
+                <li><a class="dropdown-item" href="destinos.php">Destinos</a></li>
+                <li><a class="dropdown-item" href="hotel.php">Hoteles</a></li>
                 <li><a class="dropdown-item"
                     href="https://www.airbnb.co.cr/a/stays/Costa-Rica?c=.pi0.pk393578303_53373630718&localized_ghost=true&gclid=CjwKCAiAnO2MBhApEiwA8q0HYXnbXJEwsupSJK44wgq5NRyXKS9FIrSRKJmUcqf-RQkz_cGHezb7fxoCiiIQAvD_BwE&_set_bev_on_new_domain=1637596028_ZmI2ZTA2NzgzMjNj">Airbnb</a>
                 </li>
@@ -163,23 +168,45 @@
                 Ver más
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="reglas.html">Reglas para viajar</a></li>
-                <li><a class="dropdown-item" href="recomendaciones.html">Recomendaciones</a></li>
-                <li><a class="dropdown-item" href="nosotros.html">Nosotros</a></li>
+                <li><a class="dropdown-item" href="reglas.php">Reglas para viajar</a></li>
+                <li><a class="dropdown-item" href="recomendaciones.php">Recomendaciones</a></li>
+                <li><a class="dropdown-item" href="nosotros.php">Nosotros</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="contacto.html">Contacto</a></li>
+                <li><a class="dropdown-item" href="contacto.php">Contacto</a></li>
               </ul>
             </li>
           </ul>
           <ul class="navbar-nav mb-lg-0">
-            <li class="nav-item">
-              <a style="margin-right: -10px;" class="nav-link" href="login.html" data-toggle="modal"
-                data-target=".bd-example-modal-lg">Ingresar</a>
-              <!-- <button type="button" class="btn btn-secondary" data-toggle="modal"
-                data-target=".bd-example-modal-lg">Ingresar</button> -->
-            </li>
+            <?php
+              if(!(isset($_SESSION["logeado"]))) {
+                echo "<li class='nav-item'>";
+                echo "  <a style='margin-right:-10px;' class='nav-link' href='#' data-toggle='modal' data-target='.bd-example-modal-lg'>Ingresar</a>";
+                echo "</li>";
+              } else {
+                // 
+                echo "<li class='nav-item dropdown'>";
+                echo "  <a style='margin-left:-10px;' href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'
+                aria-expanded='false'>". $correo ."</a>";
+                echo  "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+                echo    "<li><a class='dropdown-item' href='#'>Realizar un viaje</a></li>";
+                echo    "<li><a class='dropdown-item' href='#'>Mis viajes</a></li>";
+                 echo    "<li><a class='dropdown-item' href='#'>Mi usuario</a></li>";
+                echo  "</ul>";
+                echo "</li>";
+                // Boton de cerrar sesion
+                echo "<li class='nav-item'>";
+                echo "  <form method='post' action='cerrar.php'>";
+                echo "    <input type='submit' class='nav-link sin-estilo' style='margin-top: 8px; margin-right:-15px;' href='#' value='Cerrar sesión'>";
+                echo "  </form>";
+                echo "</li>";      
+              }
+            ?>
+            <!-- <a style='margin-right: -10px;' class='nav-link' href='login.html' data-toggle='modal'
+              data-target='.bd-example-modal-lg'>Ingresar</a> -->
+            <!-- <button type="button" class="btn btn-secondary" data-toggle="modal"
+              data-target=".bd-example-modal-lg">Ingresar</button> -->
           </ul>
         </div>
       </div>

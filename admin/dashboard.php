@@ -1,3 +1,12 @@
+<?php
+  session_start();
+
+  if(!(isset($_SESSION["logeado"]))) {
+    header('Location: ../index.php');
+    return;
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +25,14 @@
 
   <!-- Custom styles for this template -->
   <link href="css/dashboard.css" rel="stylesheet">
+
+  <style>
+    .sin-estilo {
+      border: none;
+      padding: 0;
+      background: none;
+    }
+  </style>
 </head>
 
 
@@ -24,8 +41,9 @@
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="background-color: #000000;" href="../index.php">PuraVidaTours</a>
     <ul class="navbar-nav px-3">
       <li class="nav justify-content-center">
-        <a class="nav-link" style="margin-right: 20px; font-size: 16px;" href="#">Mi usuario</a>
-        <a class="nav-link" style="font-size: 16px;" href="#">Cerrar sesión</a>
+        <form method="post" action="cerrar.php">
+          <input type="submit" class="nav-link sin-estilo" style="font-size: 16px; margin-top: 3px" value="Cerrar sesión">
+        </form>
       </li>
     </ul>
   </nav>

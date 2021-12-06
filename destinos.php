@@ -1,3 +1,11 @@
+<?php
+  session_start();
+
+  if(isset($_SESSION["correo"])) {
+    $correo = $_SESSION["correo"];
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,31 +54,37 @@
     .border-gradient-purple {
       border-image-source: linear-gradient(15deg, #beffcc 0%, #baff92 100%);
     }
+
+    .sin-estilo {
+      border: none;
+      padding: 0;
+      background: none;
+    }
   </style>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2"
-    style="box-shadow: 2px 2px 5px #0000002f; font-size: 18px;">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html" style="font-weight: bold;">PuraVidaTours</a>
+      <a class="navbar-brand" href="index.php">
+        <img src="./img/PuravidaTours.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        PuraVidaTours
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="destinos.html">Destinos</a>
-          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Servicios
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="hotel.html">Hoteles</a></li>
+              <li><a class="dropdown-item" href="destinos.php">Destinos</a></li>
+              <li><a class="dropdown-item" href="hotel.php">Hoteles</a></li>
               <li><a class="dropdown-item"
                   href="https://www.airbnb.co.cr/a/stays/Costa-Rica?c=.pi0.pk393578303_53373630718&localized_ghost=true&gclid=CjwKCAiAnO2MBhApEiwA8q0HYXnbXJEwsupSJK44wgq5NRyXKS9FIrSRKJmUcqf-RQkz_cGHezb7fxoCiiIQAvD_BwE&_set_bev_on_new_domain=1637596028_ZmI2ZTA2NzgzMjNj">Airbnb</a>
               </li>
@@ -82,20 +96,45 @@
               Ver más
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Reglas para viajar</a></li>
-              <li><a class="dropdown-item" href="#">Recomendaciones</a></li>
-              <li><a class="dropdown-item" href="#">Nosotros</a></li>
+              <li><a class="dropdown-item" href="reglas.php">Reglas para viajar</a></li>
+              <li><a class="dropdown-item" href="recomendaciones.php">Recomendaciones</a></li>
+              <li><a class="dropdown-item" href="nosotros.php">Nosotros</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#">Contacto</a></li>
+              <li><a class="dropdown-item" href="contacto.php">Contacto</a></li>
             </ul>
           </li>
         </ul>
         <ul class="navbar-nav mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Ingresar</a>
-          </li>
+          <?php
+            if(!(isset($_SESSION["logeado"]))) {
+              echo "<li class='nav-item'>";
+              echo "  <a style='margin-right:-10px;' class='nav-link' href='#' data-toggle='modal' data-target='.bd-example-modal-lg'>Ingresar</a>";
+              echo "</li>";
+            } else {
+              // 
+              echo "<li class='nav-item dropdown'>";
+              echo "  <a style='margin-left:-10px;' href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'
+              aria-expanded='false'>". $correo ."</a>";
+              echo  "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+              echo    "<li><a class='dropdown-item' href='#'>Realizar un viaje</a></li>";
+              echo    "<li><a class='dropdown-item' href='#'>Mis viajes</a></li>";
+               echo    "<li><a class='dropdown-item' href='#'>Mi usuario</a></li>";
+              echo  "</ul>";
+              echo "</li>";
+              // Boton de cerrar sesion
+              echo "<li class='nav-item'>";
+              echo "  <form method='post' action='cerrar.php'>";
+              echo "    <input type='submit' class='nav-link sin-estilo' style='margin-top: 8px; margin-right:-15px;' href='#' value='Cerrar sesión'>";
+              echo "  </form>";
+              echo "</li>";      
+            }
+          ?>
+          <!-- <a style='margin-right: -10px;' class='nav-link' href='login.html' data-toggle='modal'
+            data-target='.bd-example-modal-lg'>Ingresar</a> -->
+          <!-- <button type="button" class="btn btn-secondary" data-toggle="modal"
+            data-target=".bd-example-modal-lg">Ingresar</button> -->
         </ul>
       </div>
     </div>

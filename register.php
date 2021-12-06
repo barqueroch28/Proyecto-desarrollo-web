@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -8,6 +11,9 @@
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://localhost:8080/Login/assets/css/login.css">
+
+    <link rel="icon" href="img/favicon.png">
+
     <style>
         body {
             background-image: url(./img/fondologin.jpg);
@@ -145,7 +151,6 @@
             align-items: center;
         }
     </style>
-
     <script>
         var check = function () {
             if ((document.getElementById('password').value == document.getElementById('repass').value) && document.getElementById('password').value.length > 0) {
@@ -169,18 +174,25 @@
                 <div class="col-md-5">
                     <div class="card-body">
                         <p class="login-card-description">Registro</p>
+                        <div style="margin-top: -20px;">
+                            <?php
+                            if(isset($_SESSION["error"])) {
+                                $error = $_SESSION["error"];
+                                echo "  <span style='color: red; font-size: 15px;'>$error</span>";
+                            }
+                            ?>
+                        </div>
                         <div align="center">
-                            <form class="was-validated" action="" method="post"
-                                oninput='repass.setCustomValidity(repass.value != password.value ? "Passwords do not match." : "")'>
+                            <form class="was-validated" action="insert.php" method="post" id="reg_form" oninput='repass.setCustomValidity(repass.value != password.value ? "Passwords do not match." : "")'>
 
-                                <input required class="form-control" name="username" class="is-valid" type="text"
-                                    id="username" placeholder="Escriba su usuario" autofocus="" />
+                                <input required class="form-control" name="nombre" type="text" id="nombre" placeholder="Escriba su nombre" autofocus=""/>
 
-                                <input required class="form-control" name="nombre" type="text" id="nombre"
-                                    placeholder="Escriba su nombre" autofocus="" />
+                                <input required class="form-control" name="apellido" type="text" id="apellido" placeholder="Escriba sus apellidos"/>
 
-                                <input required class="form-control" name="apellidos" type="text" id="apellidos"
-                                    placeholder="Escriba su apellido" />
+                                <input required class="form-control" name="cedula" type="text" id="cedula" placeholder="Escriba su cédula"/>
+
+                                <input required class="form-control" name="telefono" maxlength="8" type="text" id="telefono" placeholder="Escriba su teléfono"/>
+
                                 <div align="left">
                                     <h6><label for="fechanacimiento">Fecha Nacimiento:</label></h6>
                                 </div>
@@ -205,7 +217,7 @@
                             </form>
                         </div>
                         <div align="center">
-                            <a style="color: #00a516;" href="login.html">Volver</a>
+                            <a style="color: #00a516;" href="index.php">Volver</a>
                         </div>
                     </div>
                 </div>
@@ -218,7 +230,22 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+    <script>
+        $(function() {
+            $("input[name='telefono']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+
+            $("input[name='cedula']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+        });
+    </script>
+
 </body>
 
-
 </html>
+
+<?php
+    unset($_SESSION["error"]);
+?>
