@@ -115,10 +115,84 @@
       padding: 0;
       background: none;
     }
+    .bg {
+      background-image: url(./img/bannerlogin.png);
+      background-position: center center;
+      border-radius: 5px;
+    }
   </style>
 </head>
 
 <body>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- Large modal -->
+  <script>
+    $('#myModal').modal(options)
+  </script>
+
+  <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="container w-100 bg-white  rounded-3 shadow">
+          <div class="row align-items-stretch">
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
+            </div>
+            <div class="col bg-white p-5 rounded-end">
+              <div align="right">
+                <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <h2 class="fw-bold text-center py-5">¡Bienvenido a PuraVidaTours!</h2>
+
+              <!-- Login form -->
+              <form action="login.php" method="POST" class="was-validated" onsubmit="MultipleTransaccion()">
+                <div class="mb-4">
+                  <label for="correo" class="form-label">Correo electronico:</label>
+                  <input required type="email" class="form-control" name="correo" id="correo">
+                </div>
+                <div class="mb-4">
+                  <label for="password" class="form-label">Contraseña:</label>
+                  <input required type="password" class="form-control" name="password" id="password">
+                </div>
+                <?php
+                  if(isset($_SESSION["error"])) {
+                    $error = $_SESSION["error"];
+                    echo "<div style='padding-bottom: 20px; margin-top: -18px;'>";
+                    echo "  <span style='color:#ff0000;'>$error</span>";
+                    echo "</div>";
+                  }
+                ?>
+                <div class='d-grid'>
+                  <button type='submit' name='but_login' id='but_login' class='btn btn-success'>Iniciar sesión</button>
+                </div>
+                <br>
+                <div class="my-3 text-center">
+                  <span>¿No tienes cuenta aún? <a href="register.php">Regístrate</a></span><br><br>
+                  <span><a href="javascript:history.back()">Atrás</a></span>
+                </div>
+              </form> <!-- Se cierra el form del Login -->
+              <!-------------------------------->
+            </div>
+          </div>
+          <div><input type="button" id="IdPersona" onclick="SetId()" disabled hidden></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php">
@@ -252,56 +326,59 @@
     <div style="margin-top: 70px;"></div>
     <h1>Hoteles Disponibles</h1>
     <hr>
-    <div class="wrapper">
-      <div class="first">
-        <img src="img/hotel1.jpg" style="width: 100%; padding: 10px; border-radius: 13px;" />
-      </div>
-      <div class="second">
-        <h4 style="font-weight: bold; color: #0077d8; padding-bottom: 5px;">Hotel 1</h4>
-        <h5 style="font-weight: 400;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non sodales neque sodales ut etiam sit amet nisl. Viverra mauris in aliquam sem fringilla. Gravida cum sociis natoque penatibus et magnis dis. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Vulputate enim nulla aliquet porttitor lacus. Molestie nunc non blandit massa enim. Ac auctor augue mauris augue neque.</h5>
-        <div style="padding-top: 10px;">
-          <h5>Precio: <span style="font-weight: bold; color: #319424;">CRC 38,672</span>
-            <span style="color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;"> por noche</span></h5>
-        </div>
-        <br>
-        <a href="#" style="font-weight: bold; font-size: 18px;" class="btn btn-success">Ver más</a>
-      </div>
-    </div>
-    <br>
-    <div class="wrapper">
-      <div class="first">
-        <img src="img/hotel2.jpg" style="width: 100%; padding: 10px; border-radius: 13px;" />
-      </div>
-      <div class="second">
-        <h4 style="font-weight: bold; color: #0077d8; padding-bottom: 5px;">Hotel 2</h4>
-        <h5 style="font-weight: 400;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non sodales neque sodales ut etiam sit amet nisl. Viverra mauris in aliquam sem fringilla. Gravida cum sociis natoque penatibus et magnis dis. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Vulputate enim nulla aliquet porttitor lacus. Molestie nunc non blandit massa enim. Ac auctor augue mauris augue neque.</h5>
-        <div style="padding-top: 10px;">
-          <h5>Precio: <span style="font-weight: bold; color: #319424;">CRC 45,310</span>
-            <span style="color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;"> por noche</span></h5>
-        </div>
-        <br>
-        <a href="#" style="font-weight: bold; font-size: 18px;" class="btn btn-success">Ver más</a>
-      </div>
-    </div>
-    <br>
-    <div class="wrapper">
-      <div class="first">
-        <img src="img/hotel3.jpg" style="width: 100%; padding: 10px; border-radius: 13px;" />
-      </div>
-      <div class="second">
-        <h4 style="font-weight: bold; color: #0077d8; padding-bottom: 5px;">Hotel 3</h4>
-        <h5 style="font-weight: 400;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non sodales neque sodales ut etiam sit amet nisl. Viverra mauris in aliquam sem fringilla. Gravida cum sociis natoque penatibus et magnis dis. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Vulputate enim nulla aliquet porttitor lacus. Molestie nunc non blandit massa enim. Ac auctor augue mauris augue neque.</h5>
-        <div style="padding-top: 10px;">
-          <h5>Precio: <span style="font-weight: bold; color: #319424;">CRC 55,200</span>
-            <span style="color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;"> por noche</span></h5>
-        </div>
-        <br>
-        <a href="#" style="font-weight: bold; font-size: 18px;" class="btn btn-success">Ver más</a>
-      </div>
-    </div>
-  </div>
+    <!-- PHP -->
+    <?php
+      require_once "config.php";
 
-  <div style="margin-top: 120px;"></div>
+      // Solo se muestran los 3 primeros
+      $sql = "SELECT * FROM tours.hotel LIMIT 3";
+      if ($result = mysqli_query($con, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_array($result)) {
+            echo "<div class='wrapper'>";
+            echo   "<div class='first'>";
+            echo      "<img src='img/hoteles/" . $row['imagen'] . "' style='width: 100%; padding: 12px; border-radius: 15px;'/>";
+            echo  "</div>";
+            echo  "<div class='second'>";
+            echo    "<h4 style='font-weight: bold; color: #0077d8; padding-bottom: 5px;'>" . $row['nombre'] . "</h4>";
+            echo    "<h5 style='font-weight: 400;'>" . substr($row['descripcion'], 0, 450) . "...</h5>";
+            echo    "<div style='padding-top: 10px;'>";
+            echo      "<h5>Precio: <span style='font-weight: bold; color: #319424;'>CRC " . number_format($row['costo']) . "</span>";
+            echo       "<span style='color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;'> por noche</span></h5>";
+            echo    "</div>";
+            echo    "<br>";
+            echo    "<a href='#' style='font-weight: bold; font-size: 18px;' class='btn btn-success'>Ver más</a>";
+            echo  "</div>";
+            echo "</div>";
+            echo "<br>";
+          }
+          $sql_ = "SELECT COUNT(*) as cantidad FROM tours.hotel";
+          if ($result = mysqli_query($con, $sql_)) {
+            if (mysqli_num_rows($result) > 0) {
+              if (($row = mysqli_fetch_array($result))) {
+                if ($row['cantidad'] > 3) {
+                  echo "<br>";
+                  echo "<div class='d-grid gap-4'>";
+                  echo   "<button class='btn btn-success' id='ver_mas' name='ver_mas'";
+                  echo    "style='padding-top:10px;padding-bottom:10px;font-size:20px' type='button'>Ver más</button>";
+                  echo "</div>";
+                }
+              }
+            }
+          }
+          // Free result set
+          mysqli_free_result($result);
+        } else {
+          echo '<div class="alert alert-danger"><em>No hay hoteles en el sistema.</em></div>';
+        }
+      } else {
+        echo "<div class='alert alert-danger'><span>¡UPS! Algo salió mal. Por favor, inténtelo de nuevo más tarde.</span></div>";
+      }
+      
+      mysqli_close($con);
+    ?>
+
+  <div style="margin-top: 150px;"></div>
     <div class="container">
       <h1>Nuestras recomendaciones</h1>
       <hr style="color: #b1b1b1;">

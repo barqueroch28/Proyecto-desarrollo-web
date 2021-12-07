@@ -35,9 +35,6 @@
 
   <link rel="stylesheet" href="css/owl.carousel.min.css">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-
   <!-- Style -->
   <link rel="stylesheet" href="css/style.css">
 
@@ -54,9 +51,84 @@
     padding: 0;
     background: none;
   }
+  
+  .bg {
+    background-image: url(./img/bannerlogin.png);
+    background-position: center center;
+    border-radius: 5px;
+  }
 </style>
 
 <body>
+    <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- Large modal -->
+  <script>
+    $('#myModal').modal(options)
+  </script>
+
+  <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="container w-100 bg-white  rounded-3 shadow">
+          <div class="row align-items-stretch">
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
+            </div>
+            <div class="col bg-white p-5 rounded-end">
+              <div align="right">
+                <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <h2 class="fw-bold text-center py-5">¡Bienvenido a PuraVidaTours!</h2>
+
+              <!-- Login form -->
+              <form action="login.php" method="POST" class="was-validated" onsubmit="MultipleTransaccion()">
+                <div class="mb-4">
+                  <label for="correo" class="form-label">Correo electronico:</label>
+                  <input required type="email" class="form-control" name="correo" id="correo">
+                </div>
+                <div class="mb-4">
+                  <label for="password" class="form-label">Contraseña:</label>
+                  <input required type="password" class="form-control" name="password" id="password">
+                </div>
+                <?php
+                  if(isset($_SESSION["error"])) {
+                    $error = $_SESSION["error"];
+                    echo "<div style='padding-bottom: 20px; margin-top: -18px;'>";
+                    echo "  <span style='color:#ff0000;'>$error</span>";
+                    echo "</div>";
+                  }
+                ?>
+                <div class='d-grid'>
+                  <button type='submit' name='but_login' id='but_login' class='btn btn-success'>Iniciar sesión</button>
+                </div>
+                <br>
+                <div class="my-3 text-center">
+                  <span>¿No tienes cuenta aún? <a href="register.php">Regístrate</a></span><br><br>
+                  <span><a href="javascript:history.back()">Atrás</a></span>
+                </div>
+              </form> <!-- Se cierra el form del Login -->
+              <!-------------------------------->
+            </div>
+          </div>
+          <div><input type="button" id="IdPersona" onclick="SetId()" disabled hidden></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php">
@@ -137,28 +209,26 @@
       <h1 align="center">Contactenos</h1>
       <br><br><br>
       <div class="row">
-        <div class="col-md-5 mr-auto">
+        <div class="col-md-5 mr-auto" style="margin-left: 50px;">
           <div style="padding-left: 46px; margin-top: 80px; color: #a3a3a3;">
             <p class="mb-5">Por este medio puede enviarnos un mensaje para contactarnos directamente. No dude en
-              contactarnos
-              y evacuaremos cualquier duda sobre nuestras tarifas o si necesita asistencia de parte de nuestro equipo
-              para que pueda
-              disfrutar al máximo de sus viajes.</p>
+              contactarnos y evacuaremos cualquier duda sobre nuestras tarifas o si necesita asistencia de parte de nuestro equipo
+              para que pueda disfrutar al máximo de sus viajes.</p>
           </div>
-
-          <ul class="list-unstyled pl-md-5 mb-5">
-            <li class="d-flex text-black mb-2">
-              <span class="mr-3"><span class="icon-map"></span></span> Parqueo ULACIT, Calle 3, Tournón, <br>San José,
-              San Francisco
-            </li>
-            <li class="d-flex text-black mb-2"><span class="mr-3"><span class="icon-phone"></span></span> +506 2121 2121
-            </li>
-            <li class="d-flex text-black"><span class="mr-3"><span class="icon-envelope-o"></span></span>
-              info@puravidatours.cr</li>
-          </ul>
+          <div style="margin-left: 80px;">
+            <ul class="list-unstyled pl-md-5 mb-5">
+              <li class="d-flex text-black mb-2">
+                <span class="mr-3"><span class="icon-map"></span></span>&nbsp&nbspParqueo ULACIT, Calle 3, Tournón, <br>&nbsp San José,
+                San Francisco
+              </li>
+              <li class="d-flex text-black mb-2"> <span class="mr-3"><span class="icon-phone"></span></span>&nbsp&nbsp+506 2020 2020
+              </li>
+              <li class="d-flex text-black"> <span class="mr-3"><span class="icon-envelope-o"></span></span>&nbsp&nbspinfo@puravidatours.cr</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" style="margin-left: 60px;">
           <form class="mb-5" method="post" id="contactForm" name="contactForm">
             <div class="row">
               <div class="col-md-12 form-group">
@@ -175,14 +245,16 @@
             <div class="row">
               <div class="col-md-12 form-group">
                 <label for="message" class="col-form-label">Mensaje</label>
-                <textarea class="form-control" name="message" id="message" cols="30" rows="7"></textarea>
+                <textarea class="form-control" name="message" id="message" style="margin-top: 0px; margin-bottom: 0px; height: 200px;"></textarea>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <input type="submit" value="Enviar Mensaje" style="margin-top: 20px;"
-                  class="btn btn-success btn-lg btn-block">
-                <span class="submitting"></span>
+                <div class='d-grid gap-4'>
+                  <input type="submit" value="Enviar Mensaje" style="margin-top: 20px; font-size: 17px;"
+                    class="btn btn-success btn-md btn-block">
+                  <span class="submitting"></span>
+                </div>
               </div>
             </div>
           </form>
