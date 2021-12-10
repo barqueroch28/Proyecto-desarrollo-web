@@ -7,6 +7,10 @@
     header('Location: ../../index.php');
     return;
   }
+  if ($_SESSION["logeado"]!=2) {
+    header('Location: ../index.php');
+    return;
+  }
 ?>
 
 <!DOCTYPE html>

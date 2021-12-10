@@ -36,7 +36,7 @@
                     // Login administrador
                     else if ($row["9"] == 2) {
                         $_SESSION['correo'] = $correo;
-                        $_SESSION['logeado'] = 1;
+                        $_SESSION['logeado'] = 2;
                         header('Location: admin/dashboard.php');
                     }
                     else {

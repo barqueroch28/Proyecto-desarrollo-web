@@ -4,6 +4,12 @@
   if(isset($_SESSION["correo"])) {
     $correo = $_SESSION["correo"];
   }
+  if (isset($_SESSION["logeado"])) {
+    if ($_SESSION["logeado"]==2) {
+      header('Location: admin/dashboard.php');
+      return;
+    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -227,7 +233,7 @@
               echo "  <a style='margin-left:-10px;' href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'
               aria-expanded='false'>". $correo ."</a>";
               echo  "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-              echo    "<li><a class='dropdown-item' href='#'>Realizar un viaje</a></li>";
+              echo    "<li><a class='dropdown-item' href='realizar_viaje.php'>Realizar un viaje</a></li>";
               echo    "<li><a class='dropdown-item' href='#'>Mis viajes</a></li>";
                 echo    "<li><a class='dropdown-item' href='#'>Mi usuario</a></li>";
               echo  "</ul>";

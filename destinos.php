@@ -4,15 +4,21 @@
   if(isset($_SESSION["correo"])) {
     $correo = $_SESSION["correo"];
   }
+  if (isset($_SESSION["logeado"])) {
+    if ($_SESSION["logeado"]==2) {
+      header('Location: admin/dashboard.php');
+      return;
+    }
+  }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PuraVidaTours | Escoge tu destino</title>
+  <title>PuraVidaTours | Destinos</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
@@ -28,31 +34,86 @@
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
   <style>
-    .box {
-      margin: auto;
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    .column {
+      float: left;
+      width: 33.3%;
+      margin-bottom: 16px;
+      padding: 0 8px;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: 8px;
+    }
+
+    .container {
+      padding: 0 16px;
+    }
+
+    .container::after,
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .title {
+      color: grey;
+    }
+
+    .button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
       width: 100%;
-      background-color: #f1f1f1;
-      padding: 10px;
-      position: relative;
-      padding: 30px;
-      box-shadow: 4px 4px 7px #0000002f;
     }
 
-    .imagen {
-      max-width: 100%;
-      max-height: auto;
+    .button:hover {
+      background-color: #555;
     }
 
-    .border-gradient {
-      border-top: 50px solid;
-      border-image-slice: 1;
-      border-width: 50px;
+    @media screen and (max-width: 650px) {
+      .column {
+        width: 100%;
+        display: block;
+      }
     }
 
-    .border-gradient-purple {
-      border-image-source: linear-gradient(15deg, #beffcc 0%, #baff92 100%);
+    .wrapper {
+      border: 1px solid #00000038;
+      overflow: hidden;
+      height: 350px;
+      max-width: auto;
+      box-shadow: 0 4px 8px 0 #00000033;
+      border-radius: 4px;
+    }
+
+    .first {
+      max-width: 350px;
+      height: auto;
+      float: left;
+    }
+
+    .second {
+      overflow: hidden;
+      width: auto;
+      padding: 35px;
     }
 
     .sin-estilo {
@@ -60,16 +121,88 @@
       padding: 0;
       background: none;
     }
-
     .bg {
       background-image: url(./img/bannerlogin.png);
       background-position: center center;
       border-radius: 5px;
     }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 
 <body>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- Large modal -->
+  <script>
+    $('#myModal').modal(options)
+  </script>
+
+  <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="container w-100 bg-white  rounded-3 shadow">
+          <div class="row align-items-stretch">
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
+            </div>
+            <div class="col bg-white p-5 rounded-end">
+              <div align="right">
+                <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <h2 class="fw-bold text-center py-5">¡Bienvenido a PuraVidaTours!</h2>
+
+              <!-- Login form -->
+              <form action="login.php" method="POST" class="was-validated" onsubmit="MultipleTransaccion()">
+                <div class="mb-4">
+                  <label for="correo" class="form-label">Correo electronico:</label>
+                  <input required type="email" class="form-control" name="correo" id="correo">
+                </div>
+                <div class="mb-4">
+                  <label for="password" class="form-label">Contraseña:</label>
+                  <input required type="password" class="form-control" name="password" id="password">
+                </div>
+                <?php
+                  if(isset($_SESSION["error"])) {
+                    $error = $_SESSION["error"];
+                    echo "<div style='padding-bottom: 20px; margin-top: -18px;'>";
+                    echo "  <span style='color:#ff0000;'>$error</span>";
+                    echo "</div>";
+                  }
+                ?>
+                <div class='d-grid'>
+                  <button type='submit' name='but_login' id='but_login' class='btn btn-success'>Iniciar sesión</button>
+                </div>
+                <br>
+                <div class="my-3 text-center">
+                  <span>¿No tienes cuenta aún? <a href="register.php">Regístrate</a></span><br><br>
+                  <span><a href="javascript:history.back()">Atrás</a></span>
+                </div>
+              </form> <!-- Se cierra el form del Login -->
+              <!-------------------------------->
+            </div>
+          </div>
+          <div><input type="button" id="IdPersona" onclick="SetId()" disabled hidden></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php">
@@ -123,7 +256,7 @@
               echo "  <a style='margin-left:-10px;' href='#' class='nav-link dropdown-toggle' data-bs-toggle='dropdown'
               aria-expanded='false'>". $correo ."</a>";
               echo  "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
-              echo    "<li><a class='dropdown-item' href='#'>Realizar un viaje</a></li>";
+              echo    "<li><a class='dropdown-item' href='realizar_viaje.php'>Realizar un viaje</a></li>";
               echo    "<li><a class='dropdown-item' href='#'>Mis viajes</a></li>";
                echo    "<li><a class='dropdown-item' href='#'>Mi usuario</a></li>";
               echo  "</ul>";
@@ -144,160 +277,200 @@
       </div>
     </div>
   </nav>
+  
+  <div class="container">
+    <div class="slideshow-container">
+      <div class="mySlides">
+        <div class="numbertext">1/3</div>
+        <img src="./img/hotelSlide1.jpg" style="width:100%">
+      </div>
+  
+      <div class="mySlides">
+        <div class="numbertext">2/3</div>
+        <img src="./img/hotelSlide2.jpg" style="width:100%">
+      </div>
+  
+      <div class="mySlides">
+        <div class="numbertext">3/3</div>
+        <img src="./img/hotelSlide3.jpg" style="width:100%">
+      </div>
+  
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+    <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+  
+      function plusSlides(n) {
+        showSlides(slideIndex += n);
+      }
+  
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+  
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+      }
+    </script>
 
-  <div class="menu-btn">
-    <i class="fas fa-bars fa-2x"></i>
-  </div>
+    <div style="margin-top: 70px;"></div>
+    <h1>Destinos Disponibles</h1>
+    <hr>
+    <!-- PHP -->
+    <?php
+      require_once "config.php";
 
-  <img src="img/fondodestino.jpg" class="imagen" width="100%" height="auto">
+      $count = 0;
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+      $sql = "SELECT * FROM tours.destino";
+      if ($result = mysqli_query($con, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+          while ($row = mysqli_fetch_array($result)) {
+            if ($count < 3) {
+              echo "<div class='wrapper'>";
+              echo   "<div class='first'>";
+              echo      "<img src='img/destinos/" . $row['imagen'] . "' style='object-fit: cover;width: 350px; height: 350px; padding: 12px; border-radius: 15px;'/>";
+              echo  "</div>";
+              echo  "<div class='second'>";
+              echo    "<h4 style='font-weight: bold; color: #0077d8; padding-bottom: 5px;'>" . $row['nombre'] . "</h4>";
+              echo    "<h5 style='font-weight: 400;'>" . substr($row['descripcion'], 0, 450) . "...</h5>";
+              echo    "<div style='padding-top: 10px;'>";
+              echo      "<h5>Precio: <span style='font-weight: bold; color: #319424;'>CRC " . number_format($row['costo']) . "</span>";
+              echo       "<span style='color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;'> por noche</span></h5>";
+              echo    "</div>";
+              echo    "<br>";
+              echo    "<a href='#' style='font-weight: bold; font-size: 18px;' class='btn btn-success'>Ver más</a>";
+              echo  "</div>";
+              echo "</div>";
+              echo "<br>";
+              $count++;
+            } else {
+              echo "<div class='item hidden'>";
+              echo  "<div class='wrapper'>";
+              echo    "<div class='first'>";
+              echo       "<img src='img/destinos/" . $row['imagen'] . "' style='object-fit: cover;width: 350px; height: 350px; padding: 12px; border-radius: 15px;'/>";
+              echo   "</div>";
+              echo   "<div class='second'>";
+              echo     "<h4 style='font-weight: bold; color: #0077d8; padding-bottom: 5px;'>" . $row['nombre'] . "</h4>";
+              echo     "<h5 style='font-weight: 400;'>" . substr($row['descripcion'], 0, 450) . "...</h5>";
+              echo     "<div style='padding-top: 10px;'>";
+              echo       "<h5>Precio: <span style='font-weight: bold; color: #319424;'>CRC " . number_format($row['costo']) . "</span>";
+              echo        "<span style='color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;'> por noche</span></h5>";
+              echo     "</div>";
+              echo     "<br>";
+              echo     "<a href='#' style='font-weight: bold; font-size: 18px;' class='btn btn-success'>Ver más</a>";
+              echo   "</div>";
+              echo  "</div>";
+              echo "</div>";
+              echo "<br>";
+            }
+          }
+          $sql_ = "SELECT COUNT(*) as cantidad FROM tours.destino";
+          if ($result = mysqli_query($con, $sql_)) {
+            if (mysqli_num_rows($result) > 0) {
+              if (($row = mysqli_fetch_array($result))) {
+                if ($row['cantidad'] > 3) {
+                  echo "<div class='d-grid gap-4'>";
+                  echo   "<button class='btn btn-success' id='viewmore' style='padding-top:10px;padding-bottom:10px;font-size:20px;margin-top:-500px' type='button'>Ver más</button>";
+                  echo "</div>";
+                }
+              }
+            }
+          }
+          // Free result set
+          mysqli_free_result($result);
+        } else {
+          echo '<div class="alert alert-danger"><em>No hay hoteles en el sistema.</em></div>';
+        }
+      } else {
+        echo "<div class='alert alert-danger'><span>¡UPS! Algo salió mal. Por favor, inténtelo de nuevo más tarde.</span></div>";
+      }
+      
+      mysqli_close($con);
+    ?>
 
+    <script>
+      $('#viewmore').on('click', function(){
+        $('.item:hidden').show();
+        $('#viewmore').hide();
+      })
+    </script>
 
-
-
-
-  <!-- Large modal -->
-  <script>
-    $('#myModal').modal(options)
-  </script>
-
-
-  <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="container w-100 bg-white  rounded-3 shadow">
-          <div class="row align-items-stretch">
-            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
-            </div>
-            <div class="col bg-white p-5 rounded-end">
-              <div align="right">
-                <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <h2 class="fw-bold text-center py-5">¡Bienvenido a PuraVidaTours!</h2>
-
-              <!-- Login form -->
-              <form action="login.php" method="POST" class="was-validated" onsubmit="MultipleTransaccion()">
-                <div class="mb-4">
-                  <label for="correo" class="form-label">Correo electronico:</label>
-                  <input required type="email" class="form-control" name="correo" id="correo">
-                </div>
-                <div class="mb-4">
-                  <label for="password" class="form-label">Contraseña:</label>
-                  <input required type="password" class="form-control" name="password" id="password">
-                </div>
-                <?php
-                  if(isset($_SESSION["error"])) {
-                    $error = $_SESSION["error"];
-                    echo "<div style='padding-bottom: 20px; margin-top: -18px;'>";
-                    echo "  <span style='color:#ff0000;'>$error</span>";
-                    echo "</div>";
-                  }
-                ?>
-                <div class='d-grid'>
-                  <button type='submit' name='but_login' id='but_login' class='btn btn-success'>Iniciar sesión</button>
-                </div>
-                <br>
-                <div class="my-3 text-center">
-                  <span>¿No tienes cuenta aún? <a href="register.php">Regístrate</a></span><br><br>
-                  <span><a href="javascript:history.back()">Atrás</a></span>
-                </div>
-              </form> <!-- Se cierra el form del Login -->
-              <!-------------------------------->
-            </div>
-          </div>
-          <div><input type="button" id="IdPersona" onclick="SetId()" disabled hidden></div>
+  <div style="margin-top: 150px;"></div>
+    <div class="container">
+      <h1>Nuestras recomendaciones</h1>
+      <hr style="color: #b1b1b1;">
+      <div class="news-cards">
+        <div>
+          <img src="img/news1.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/news2.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/news3.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        </div>
+        <div>
+          <img src="img/news4.jpg" alt="" />
+          <h3>Lorem, ipsum dolor.</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+          </p>
+          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
         </div>
       </div>
     </div>
-  </div>
-  
 
-  <div class="container">
-    <div style="margin-top: -150px" class="box border-gradient border-gradient-purple">
-      <form>
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label for="destino" class="form-label" style="width: max-content">Lugar/Destino</label>
-            <select id="destino" name="destino" class="form-select" style="height: 50px;" required>
-              <?php 
-                include "config.php";
-                $resultado = mysqli_query($con, "SELECT * FROM tours.destino");
-                $row = mysqli_fetch_array($resultado);
-                echo "<option value='' required selected disabled>Destino...</option>";
-                do {
-                  echo "<option value='" . $row['id_destino'] . "'>" . $row['nombre']  . "</option>";
-                } while ($row = mysqli_fetch_array($resultado));
-              ?>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label for="inputEmail4" class="form-label">Fecha de ida</label>
-            <input class="form-control" onchange="enableDate()" required type="date" max="2022-12-31" id="checkin-date" name="checkin" width="270" disabled/>
-          </div>
-          <div class="col-md-4">
-            <label for="inputPassword4" class="form-label">Fecha de regreso</label>
-            <input class="form-control" required type="date" id="checkout-date" max="2022-12-31" name="checkout" width="270" disabled/>
-          </div>
-        </div>
-        <div class="row">
-        <div class="col" style="padding-top: 25px;">
-          <?php
-            if((isset($_SESSION["logeado"]))) {
-              echo "<button type='submit' class='btn btn-success'>Buscar disponibildad</button>";
-            } else {
-              echo "<button disabled type='submit' class='btn btn-success'>Buscar disponibildad</button>";
-              echo "<span style='margin-left:10px'>Inicie sesión</span>";
-            }
-          ?>
-        </div>
-        </div>  
-      </form>
-      <script>
-        var chooseDestino = document.querySelector("#destino");
-        var currentDateTime = new Date();
-        var year = currentDateTime.getFullYear();
-        var month = (currentDateTime.getMonth() + 1);
-        var date = (currentDateTime.getDate() + 1);
-
-        if (date < 10) {
-          date = '0' + date;
-        }
-        if (month < 10) {
-          month = '0' + month;
-        }
-
-        var dateTomorrow = year + "-" + month + "-" + date;
-        var checkinElem = document.querySelector("#checkin-date");
-        var checkoutElem = document.querySelector("#checkout-date");
-
-        checkinElem.setAttribute("min", dateTomorrow);
-
-        chooseDestino.onchange = function () {
-          $("#checkin-date").prop("disabled", false );
-        }
-
-        checkinElem.onchange = function () {
-          checkoutElem.setAttribute("min", this.value);
-          $("#checkout-date").prop("disabled", false );
-        }
-      </script>
+  <div style="margin-top: 150px;"></div>
+  <section class="social">
+    <p>Follow PuraVidaTours</p>
+    <div class="links">
+      <a href="https://facebook.com">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://twitter.com">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://linkdin.com">
+        <i class="fab fa-linkedin"></i>
+      </a>
     </div>
-  </div>
-  <div style="margin-bottom: 500px"></div>
+  </section>
   </div>
 
   <style>
@@ -535,6 +708,7 @@
   <!-- Scroll Reveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="main.js"></script>
+  </div>
 </body>
 
 </html>

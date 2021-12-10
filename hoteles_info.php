@@ -12,13 +12,14 @@
   }
 ?>
 
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
+  <!-- Required meta tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PuraVidaTours | Hoteles</title>
+  <title>PuraVidaTours | Info</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
@@ -34,107 +35,38 @@
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <style>
-    html {
-      box-sizing: border-box;
-    }
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
 
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-    }
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-    .column {
-      float: left;
-      width: 33.3%;
-      margin-bottom: 16px;
-      padding: 0 8px;
-    }
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
 
-    .card {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      margin: 8px;
-    }
+  <!-- Style -->
+  <link rel="stylesheet" href="css/style.css">
 
-    .container {
-      padding: 0 16px;
-    }
 
-    .container::after,
-    .row::after {
-      content: "";
-      clear: both;
-      display: table;
-    }
-
-    .title {
-      color: grey;
-    }
-
-    .button {
-      border: none;
-      outline: 0;
-      display: inline-block;
-      padding: 8px;
-      color: white;
-      background-color: #000;
-      text-align: center;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    .button:hover {
-      background-color: #555;
-    }
-
-    @media screen and (max-width: 650px) {
-      .column {
-        width: 100%;
-        display: block;
-      }
-    }
-
-    .wrapper {
-      border: 1px solid #00000038;
-      overflow: hidden;
-      height: 350px;
-      max-width: auto;
-      box-shadow: 0 4px 8px 0 #00000033;
-      border-radius: 4px;
-    }
-
-    .first {
-      max-width: 350px;
-      height: auto;
-      float: left;
-    }
-
-    .second {
-      overflow: hidden;
-      width: auto;
-      padding: 35px;
-    }
-
-    .sin-estilo {
-      border: none;
-      padding: 0;
-      background: none;
-    }
-    .bg {
-      background-image: url(./img/bannerlogin.png);
-      background-position: center center;
-      border-radius: 5px;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
 </head>
 
+<style>
+  .error {
+    color: #ff3232;
+  }
+
+  .sin-estilo {
+    border: none;
+    padding: 0;
+    background: none;
+  }
+  
+  .bg {
+    background-image: url(./img/bannerlogin.png);
+    background-position: center center;
+    border-radius: 5px;
+  }
+</style>
+
 <body>
-  <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -221,7 +153,7 @@
               Servicios
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="hoteles.php">hoteles</a></li>
+              <li><a class="dropdown-item" href="destinos.php">Destinos</a></li>
               <li><a class="dropdown-item" href="hotel.php">Hoteles</a></li>
               <li><a class="dropdown-item"
                   href="https://www.airbnb.co.cr/a/stays/Costa-Rica?c=.pi0.pk393578303_53373630718&localized_ghost=true&gclid=CjwKCAiAnO2MBhApEiwA8q0HYXnbXJEwsupSJK44wgq5NRyXKS9FIrSRKJmUcqf-RQkz_cGHezb7fxoCiiIQAvD_BwE&_set_bev_on_new_domain=1637596028_ZmI2ZTA2NzgzMjNj">Airbnb</a>
@@ -277,200 +209,110 @@
       </div>
     </div>
   </nav>
-  
-  <div class="container">
-    <div class="slideshow-container">
-      <div class="mySlides">
-        <div class="numbertext">1/3</div>
-        <img src="./img/hotelSlide1.jpg" style="width:100%">
-      </div>
-  
-      <div class="mySlides">
-        <div class="numbertext">2/3</div>
-        <img src="./img/hotelSlide2.jpg" style="width:100%">
-      </div>
-  
-      <div class="mySlides">
-        <div class="numbertext">3/3</div>
-        <img src="./img/hotelSlide3.jpg" style="width:100%">
-      </div>
-  
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-    <br>
-    <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
-    <script>
-      var slideIndex = 1;
-      showSlides(slideIndex);
-  
-      function plusSlides(n) {
-        showSlides(slideIndex += n);
-      }
-  
-      function currentSlide(n) {
-        showSlides(slideIndex = n);
-      }
-  
-      function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-        for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-      }
-    </script>
 
-    <div style="margin-top: 70px;"></div>
-    <h1>Hoteles Disponibles</h1>
-    <hr>
-    <!-- PHP -->
-    <?php
-      require_once "config.php";
-
-      $count = 0;
-
-      $sql = "SELECT * FROM tours.hotel";
-      if ($result = mysqli_query($con, $sql)) {
-        if (mysqli_num_rows($result) > 0) {
-          while ($row = mysqli_fetch_array($result)) {
-            if ($count < 3) {
-              echo "<div class='wrapper'>";
-              echo   "<div class='first'>";
-              echo      "<img src='img/hoteles/" . $row['imagen'] . "' style='object-fit: cover;width: 350px; height: 350px; padding: 12px; border-radius: 15px;'/>";
-              echo  "</div>";
-              echo  "<div class='second'>";
-              echo    "<h4 style='font-weight: bold; color: #0077d8; padding-bottom: 5px;'>" . $row['nombre'] . "</h4>";
-              echo    "<h5 style='font-weight: 400;'>" . substr($row['descripcion'], 0, 450) . "...</h5>";
-              echo    "<div style='padding-top: 10px;'>";
-              echo      "<h5>Precio: <span style='font-weight: bold; color: #319424;'>CRC " . number_format($row['costo']) . "</span>";
-              echo       "<span style='color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;'> por noche</span></h5>";
-              echo    "</div>";
-              echo    "<br>";
-              echo    "<a href='#' style='font-weight: bold; font-size: 18px;' class='btn btn-success'>Ver más</a>";
-              echo  "</div>";
-              echo "</div>";
-              echo "<br>";
-              $count++;
-            } else {
-              echo "<div class='item hidden'>";
-              echo  "<div class='wrapper'>";
-              echo    "<div class='first'>";
-              echo       "<img src='img/hoteles/" . $row['imagen'] . "' style='object-fit: cover;width: 350px; height: 350px; padding: 12px; border-radius: 15px;'/>";
-              echo   "</div>";
-              echo   "<div class='second'>";
-              echo     "<h4 style='font-weight: bold; color: #0077d8; padding-bottom: 5px;'>" . $row['nombre'] . "</h4>";
-              echo     "<h5 style='font-weight: 400;'>" . substr($row['descripcion'], 0, 450) . "...</h5>";
-              echo     "<div style='padding-top: 10px;'>";
-              echo       "<h5>Precio: <span style='font-weight: bold; color: #319424;'>CRC " . number_format($row['costo']) . "</span>";
-              echo        "<span style='color: #272727; font-weight: 400; font-size: 14px; padding-left: 5px;'> por noche</span></h5>";
-              echo     "</div>";
-              echo     "<br>";
-              echo     "<a href='#' style='font-weight: bold; font-size: 18px;' class='btn btn-success'>Ver más</a>";
-              echo   "</div>";
-              echo  "</div>";
-              echo "</div>";
-              echo "<br>";
-            }
-          }
-          $sql_ = "SELECT COUNT(*) as cantidad FROM tours.hotel";
-          if ($result = mysqli_query($con, $sql_)) {
-            if (mysqli_num_rows($result) > 0) {
-              if (($row = mysqli_fetch_array($result))) {
-                if ($row['cantidad'] > 3) {
-                  echo "<div class='d-grid gap-4'>";
-                  echo   "<button class='btn btn-success' id='viewmore' style='padding-top:10px;padding-bottom:10px;font-size:20px;margin-top:-10px' type='button'>Ver más</button>";
-                  echo "</div>";
-                }
-              }
-            }
-          }
-          // Free result set
-          mysqli_free_result($result);
-        } else {
-          echo '<div class="alert alert-danger"><em>No hay hoteles en el sistema.</em></div>';
-        }
-      } else {
-        echo "<div class='alert alert-danger'><span>¡UPS! Algo salió mal. Por favor, inténtelo de nuevo más tarde.</span></div>";
-      }
-      
-      mysqli_close($con);
-    ?>
-
-    <script>
-      $('#viewmore').on('click', function(){
-        $('.item:hidden').show();
-        $('#viewmore').hide();
-      })
-    </script>
-
-  <div style="margin-top: 150px;"></div>
+  <div style="margin-top: 90px;"></div>
     <div class="container">
+            
+      <?php 
+        require_once "config.php";
+        
+        if(isset($_GET["id_hotel"])) {
+          $id_hotel = $_GET['id_hotel'];
+          $sql = "SELECT * FROM tours.hotel WHERE id_hotel='" . $id_hotel . "'";
+          $result = mysqli_query($con, $sql);
+          $row = mysqli_fetch_array($result);
+          if ($row) {
+            echo "<h1>" . $row['nombre'] . "</h1>";
+            echo "<br>";
+            echo "<h4 class='fw-light'>" . $row['descripcion']. "</h4>";
+            echo "<br>";
+            echo   "<img src='img/hoteles/" . $row['imagen'] . "' alt='' width='60%'/>";
+          }
+        }
+      ?>
+      <div style="margin-top: 120px;"></div>
       <h1>Nuestras recomendaciones</h1>
-      <hr style="color: #b1b1b1;">
+      <hr style="color: #b1b1b180;">
       <div class="news-cards">
-        <div>
-          <img src="img/news1.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/news2.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/news3.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/news4.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
+      <!-- PHP -->
+        <?php
+          require_once "config.php";
+
+          $sql = "SELECT * FROM tours.destino LIMIT 4";
+          if ($result = mysqli_query($con, $sql)) {
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<div>";
+                echo   "<img src='img/destinos/" . $row['imagen'] . "' alt='' />";
+                echo   "<h3>" . $row['nombre'] . "</h3>";
+                echo   "<p>" . substr($row['descripcion'], 0, 150) . "...</p>";
+                echo   "<a href='destinos_info.php?id_destino=". $row['id_destino'] ."' style='color:#157a1a'>Ver más</a>";
+                
+                echo "</div>";
+              }
+              // Free result set
+              mysqli_free_result($result);
+            } else {
+              echo '<div class="alert alert-danger"><em>No hay destinos en el sistema.</em></div>';
+            }
+          } else {
+            echo "<div class='alert alert-danger'><span>¡UPS! Algo salió mal. Por favor, inténtelo de nuevo más tarde.</span></div>";
+          }
+          
+        ?>
       </div>
     </div>
 
-  <div style="margin-top: 150px;"></div>
-  <section class="social">
-    <p>Follow PuraVidaTours</p>
-    <div class="links">
-      <a href="https://facebook.com">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://twitter.com">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="https://linkdin.com">
-        <i class="fab fa-linkedin"></i>
-      </a>
+    <div style="margin-top: 80px;"></div>
+    <div class="container">
+      <h1>Hoteles Populares</h1>
+      <hr style="color: #b1b1b180;">
+      <div class="news-cards">
+      <!-- PHP -->
+        <?php
+          require_once "config.php";
+
+          $sql = "SELECT * FROM tours.hotel LIMIT 4";
+          if ($result = mysqli_query($con, $sql)) {
+            if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_array($result)) {
+                echo "<div>";
+                echo   "<img src='img/hoteles/" . $row['imagen'] . "' alt='' />";
+                echo   "<h3>" . $row['nombre'] . "</h3>";
+                echo   "<p>" . substr($row['descripcion'], 0, 150) . "...</p>";
+                echo   "<a href='hoteles_info.php?id_hotel=". $row['id_hotel'] ."' style='color:#157a1a'>Ver más</a>";
+                
+                echo "</div>";
+              }
+              // Free result set
+              mysqli_free_result($result);
+            } else {
+              echo '<div class="alert alert-danger"><em>No hay hoteles en el sistema.</em></div>';
+            }
+          } else {
+            echo "<div class='alert alert-danger'><span>¡UPS! Algo salió mal. Por favor, inténtelo de nuevo más tarde.</span></div>";
+          }
+          
+          mysqli_close($con);
+        ?>
+      </div>
     </div>
-  </section>
+
+    <div style="margin-top: 170px;"></div>
+    <section class="social">
+      <p>Follow PuraVidaTours</p>
+      <div class="links">
+        <a href="https://facebook.com">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://linkdin.com">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
   </div>
 
   <style>
@@ -658,6 +500,7 @@
       padding: 0;
     }
   </style>
+
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <footer class="footer_area section_padding_130_0">
     <div class="container">

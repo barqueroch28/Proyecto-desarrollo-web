@@ -1,7 +1,11 @@
 <?php
   session_start();
 
-  if(!(isset($_SESSION["logeado"]))) {
+  if (!(isset($_SESSION["logeado"]))) {
+    header('Location: ../index.php');
+    return;
+  }
+  if ($_SESSION["logeado"]!=2) {
     header('Location: ../index.php');
     return;
   }

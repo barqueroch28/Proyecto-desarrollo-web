@@ -2,7 +2,7 @@
 
     session_start();
 
-    if(isset($_SESSION["logeado"])) {
+    if(isset($_SESSION["logeado"]) && isset($_SESSION["correo"])) {
         if ($_SESSION["logeado"] == 1) {
             unset($_SESSION["logeado"]);
             unset($_SESSION["correo"]);

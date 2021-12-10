@@ -12,14 +12,13 @@
   }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PuraVidaTours | Contactenos</title>
+  <title>PuraVidaTours | Escoge tu destino</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
@@ -35,106 +34,48 @@
     integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <style>
+    .box {
+      margin: auto;
+      width: 100%;
+      background-color: #f1f1f1;
+      padding: 10px;
+      position: relative;
+      padding: 30px;
+      box-shadow: 4px 4px 7px #0000002f;
+    }
 
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
+    .imagen {
+      max-width: 100%;
+      max-height: auto;
+    }
 
-  <!-- Style -->
-  <link rel="stylesheet" href="css/style.css">
+    .border-gradient {
+      border-top: 50px solid;
+      border-image-slice: 1;
+      border-width: 50px;
+    }
 
+    .border-gradient-purple {
+      border-image-source: linear-gradient(15deg, #beffcc 0%, #baff92 100%);
+    }
 
+    .sin-estilo {
+      border: none;
+      padding: 0;
+      background: none;
+    }
+
+    .bg {
+      background-image: url(./img/bannerlogin.png);
+      background-position: center center;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 
-<style>
-  .error {
-    color: #ff3232;
-  }
-
-  .sin-estilo {
-    border: none;
-    padding: 0;
-    background: none;
-  }
-  
-  .bg {
-    background-image: url(./img/bannerlogin.png);
-    background-position: center center;
-    border-radius: 5px;
-  }
-</style>
-
 <body>
-    <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
-  <!-- Large modal -->
-  <script>
-    $('#myModal').modal(options)
-  </script>
-
-  <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="container w-100 bg-white  rounded-3 shadow">
-          <div class="row align-items-stretch">
-            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
-            </div>
-            <div class="col bg-white p-5 rounded-end">
-              <div align="right">
-                <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <h2 class="fw-bold text-center py-5">¡Bienvenido a PuraVidaTours!</h2>
-
-              <!-- Login form -->
-              <form action="login.php" method="POST" class="was-validated" onsubmit="MultipleTransaccion()">
-                <div class="mb-4">
-                  <label for="correo" class="form-label">Correo electronico:</label>
-                  <input required type="email" class="form-control" name="correo" id="correo">
-                </div>
-                <div class="mb-4">
-                  <label for="password" class="form-label">Contraseña:</label>
-                  <input required type="password" class="form-control" name="password" id="password">
-                </div>
-                <?php
-                  if(isset($_SESSION["error"])) {
-                    $error = $_SESSION["error"];
-                    echo "<div style='padding-bottom: 20px; margin-top: -18px;'>";
-                    echo "  <span style='color:#ff0000;'>$error</span>";
-                    echo "</div>";
-                  }
-                ?>
-                <div class='d-grid'>
-                  <button type='submit' name='but_login' id='but_login' class='btn btn-success'>Iniciar sesión</button>
-                </div>
-                <br>
-                <div class="my-3 text-center">
-                  <span>¿No tienes cuenta aún? <a href="register.php">Regístrate</a></span><br><br>
-                  <span><a href="javascript:history.back()">Atrás</a></span>
-                </div>
-              </form> <!-- Se cierra el form del Login -->
-              <!-------------------------------->
-            </div>
-          </div>
-          <div><input type="button" id="IdPersona" onclick="SetId()" disabled hidden></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-custom-2 bg-shadow">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php">
@@ -210,166 +151,191 @@
     </div>
   </nav>
 
-  <div style="margin-top: 120px;">
-    <div class="container">
-      <h1 align="center">Contactenos</h1>
-      <br><br><br>
-      <div class="row">
-        <div class="col-md-5 mr-auto" style="margin-left: 50px;">
-          <div style="padding-left: 46px; margin-top: 80px; color: #a3a3a3;">
-            <p class="mb-5">Por este medio puede enviarnos un mensaje para contactarnos directamente. No dude en
-              contactarnos y evacuaremos cualquier duda sobre nuestras tarifas o si necesita asistencia de parte de nuestro equipo
-              para que pueda disfrutar al máximo de sus viajes.</p>
-          </div>
-          <div style="margin-left: 80px;">
-            <ul class="list-unstyled pl-md-5 mb-5">
-              <li class="d-flex text-black mb-2">
-                <span class="mr-3"><span class="icon-map"></span></span>&nbsp&nbspParqueo ULACIT, Calle 3, Tournón, <br>&nbsp San José,
-                San Francisco
-              </li>
-              <li class="d-flex text-black mb-2"> <span class="mr-3"><span class="icon-phone"></span></span>&nbsp&nbsp+506 2020 2020
-              </li>
-              <li class="d-flex text-black"> <span class="mr-3"><span class="icon-envelope-o"></span></span>&nbsp&nbspinfo@puravidatours.cr</li>
-            </ul>
-          </div>
-        </div>
+  <div class="menu-btn">
+    <i class="fas fa-bars fa-2x"></i>
+  </div>
 
-        <div class="col-md-6" style="margin-left: 60px;">
-          <form class="mb-5" method="post" id="contactForm" name="contactForm">
-            <div class="row">
-              <div class="col-md-12 form-group">
-                <label for="name" class="col-form-label">Nombre</label>
-                <input type="text" class="form-control" name="name" id="name">
-              </div>
+  <img src="img/fondodestino.jpg" class="imagen" width="100%" height="auto">
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- Large modal -->
+  <script>
+    $('#myModal').modal(options)
+  </script>
+
+
+  <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="container w-100 bg-white  rounded-3 shadow">
+          <div class="row align-items-stretch">
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6">
             </div>
-            <div class="row">
-              <div class="col-md-12 form-group">
-                <label for="email" class="col-form-label">Email</label>
-                <input type="email" class="form-control" name="email" id="email">
+            <div class="col bg-white p-5 rounded-end">
+              <div align="right">
+                <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 form-group">
-                <label for="message" class="col-form-label">Mensaje</label>
-                <textarea class="form-control" name="message" id="message" style="margin-top: 0px; margin-bottom: 0px; height: 200px;"></textarea>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class='d-grid gap-4'>
-                  <input type="submit" value="Enviar Mensaje" style="margin-top: 20px; font-size: 17px;"
-                    class="btn btn-success btn-md btn-block">
-                  <span class="submitting"></span>
+              <h2 class="fw-bold text-center py-5">¡Bienvenido a PuraVidaTours!</h2>
+
+              <!-- Login form -->
+              <form action="login.php" method="POST" class="was-validated" onsubmit="MultipleTransaccion()">
+                <div class="mb-4">
+                  <label for="correo" class="form-label">Correo electronico:</label>
+                  <input required type="email" class="form-control" name="correo" id="correo">
                 </div>
-              </div>
+                <div class="mb-4">
+                  <label for="password" class="form-label">Contraseña:</label>
+                  <input required type="password" class="form-control" name="password" id="password">
+                </div>
+                <?php
+                  if(isset($_SESSION["error"])) {
+                    $error = $_SESSION["error"];
+                    echo "<div style='padding-bottom: 20px; margin-top: -18px;'>";
+                    echo "  <span style='color:#ff0000;'>$error</span>";
+                    echo "</div>";
+                  }
+                ?>
+                <div class='d-grid'>
+                  <button type='submit' name='but_login' id='but_login' class='btn btn-success'>Iniciar sesión</button>
+                </div>
+                <br>
+                <div class="my-3 text-center">
+                  <span>¿No tienes cuenta aún? <a href="register.php">Regístrate</a></span><br><br>
+                  <span><a href="javascript:history.back()">Atrás</a></span>
+                </div>
+              </form> <!-- Se cierra el form del Login -->
+              <!-------------------------------->
             </div>
-          </form>
-
-          <div id="form-message-warning mt-4"></div>
+          </div>
+          <div><input type="button" id="IdPersona" onclick="SetId()" disabled hidden></div>
         </div>
       </div>
     </div>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/main.js"></script>
+  </div>
+  
 
-    <div style="margin-top: 170px;"></div>
-    <div class="container">
-      <h1>Nuestras recomendaciones</h1>
-      <hr style="color: #b1b1b180;">
-      <div class="news-cards">
-        <div>
-          <img src="img/news1.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+  <div class="container">
+    <div style="margin-top: -150px" class="box border-gradient border-gradient-purple">
+      <form>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="destino" class="form-label" style="width: max-content">Lugar/Destino</label>
+            <select id="destino" name="destino" class="form-select" style="height: 50px;" required>
+              <?php 
+                include "config.php";
+                $resultado = mysqli_query($con, "SELECT * FROM tours.destino");
+                $row = mysqli_fetch_array($resultado);
+                echo "<option value='' required selected disabled>Destino...</option>";
+                do {
+                  echo "<option value='" . $row['id_destino'] . "'>" . $row['nombre']  . "</option>";
+                } while ($row = mysqli_fetch_array($resultado));
+              ?>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="inputEmail4" class="form-label">Fecha de ida</label>
+            <input class="form-control" onchange="enableDate()" required type="date" max="2022-12-31" id="checkin-date" name="checkin" width="270" disabled/>
+          </div>
+          <div class="col-md-4">
+            <label for="inputPassword4" class="form-label">Fecha de regreso</label>
+            <input class="form-control" required type="date" id="checkout-date" max="2022-12-31" name="checkout" width="270" disabled/>
+          </div>
         </div>
-        <div>
-          <img src="img/news2.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
+        <div class="row">
+        <div class="col" style="padding-top: 25px;">
+          <?php
+            if((isset($_SESSION["logeado"]))) {
+              echo "<button type='submit' class='btn btn-success'>Buscar disponibildad</button>";
+            } else {
+              echo "<button disabled type='submit' class='btn btn-success'>Buscar disponibildad</button>";
+              echo "<a style='margin-left:15px;' class='link-info' href='#' data-toggle='modal' data-target='.bd-example-modal-lg'>Inicie sesión</a>";
+            }
+          ?>
         </div>
-        <div>
-          <img src="img/news3.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/news4.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-      </div>
+        </div>  
+      </form>
+      <script>
+        var chooseDestino = document.querySelector("#destino");
+        var currentDateTime = new Date();
+        var year = currentDateTime.getFullYear();
+        var month = (currentDateTime.getMonth() + 1);
+        var date = (currentDateTime.getDate() + 1);
+
+        if (date < 10) {
+          date = '0' + date;
+        }
+        if (month < 10) {
+          month = '0' + month;
+        }
+
+        var dateTomorrow = year + "-" + month + "-" + date;
+        var checkinElem = document.querySelector("#checkin-date");
+        var checkoutElem = document.querySelector("#checkout-date");
+
+        checkinElem.setAttribute("min", dateTomorrow);
+
+        chooseDestino.onchange = function () {
+          $("#checkin-date").prop("disabled", false );
+        }
+
+        checkinElem.onchange = function () {
+          checkoutElem.setAttribute("min", this.value);
+          $("#checkout-date").prop("disabled", false );
+        }
+      </script>
     </div>
+  </div>
+  <div style="margin-bottom: 500px"></div>
+  </div>
+  <div class="container">
+    <h1>Nuestras recomendaciones</h1>
+    <hr style="color: #b1b1b180;">
+    <div class="news-cards">
+      <!-- PHP -->
+      <?php
+        require_once "config.php";
 
-    <div style="margin-top: 80px;"></div>
-    <div class="container">
-      <h1>Hoteles Populares</h1>
-      <hr style="color: #b1b1b180;">
-      <div class="news-cards">
-        <div>
-          <img src="img/hotel1.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/hotel2.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/hotel3.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-        <div>
-          <img src="img/hotel1.jpg" alt="" />
-          <h3>Lorem, ipsum dolor.</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
-            doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
-          </p>
-          <a href="#">Ver más <i class="fas fa-angle-double-right"></i></a>
-        </div>
-      </div>
+        $sql = "SELECT * FROM tours.destino LIMIT 4";
+        if ($result = mysqli_query($con, $sql)) {
+          if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+              echo "<div>";
+              echo   "<img src='img/destinos/" . $row['imagen'] . "' alt='' />";
+              echo   "<h3>" . $row['nombre'] . "</h3>";
+              echo   "<p>" . substr($row['descripcion'], 0, 150) . "...</p>";
+              echo   "<a href='destinos_info.php?id_destino=". $row['id_destino'] ."' style='color:#157a1a'>Ver más</a>";
+              
+              echo "</div>";
+            }
+            // Free result set
+            mysqli_free_result($result);
+          } else {
+            echo '<div class="alert alert-danger"><em>No hay destinos en el sistema.</em></div>';
+          }
+        } else {
+          echo "<div class='alert alert-danger'><span>¡UPS! Algo salió mal. Por favor, inténtelo de nuevo más tarde.</span></div>";
+        }
+        
+        mysqli_close($con);
+      ?>
     </div>
+  </div>      
 
-    <div style="margin-top: 170px;"></div>
-    <section class="social">
-      <p>Follow PuraVidaTours</p>
-      <div class="links">
-        <a href="https://facebook.com">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://twitter.com">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://linkdin.com">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </div>
-    </section>
+  <div style="margin-bottom: 500px"></div>
   </div>
 
   <style>
@@ -557,7 +523,6 @@
       padding: 0;
     }
   </style>
-
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
   <footer class="footer_area section_padding_130_0">
     <div class="container">
@@ -608,7 +573,6 @@
   <!-- Scroll Reveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="main.js"></script>
-  </div>
 </body>
 
 </html>
